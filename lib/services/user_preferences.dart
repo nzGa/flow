@@ -311,7 +311,7 @@ class UserPreferencesService {
 
   set transactionButtonOrder(List<FlowButtonType> order) {
     final List<FlowButtonType> newOrder =
-        (order.length >= 3 && order.length <= FlowButtonType.values.length)
+        (order.length >= 2 && order.length <= FlowButtonType.values.length)
         ? order
         : FlowButtonType.defaultOrder;
 
@@ -360,7 +360,7 @@ class UserPreferencesService {
   void _updateButtonsWidgets(List<FlowButtonType> order) async {
     try {
       final String value = order
-          .where((e) => e != FlowButtonType.eny)
+          .where((e) => e != FlowButtonType.eny && e != FlowButtonType.transfer)
           .map((e) => e.value)
           .join(",");
       await HomeWidget.setAppGroupId(iOSAppGroupId);

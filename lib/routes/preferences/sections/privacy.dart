@@ -23,12 +23,6 @@ class _PrivacyState extends State<Privacy> {
           value: UserPreferencesService().privacyModeUponLaunch,
           onChanged: updatePrivacyMode,
         ),
-        SwitchListTile(
-          secondary: const Icon(Symbols.earthquake_rounded),
-          title: Text("preferences.privacy.maskAtShake".t(context)),
-          value: UserPreferencesService().privacyModeUponShaking,
-          onChanged: updatePrivacyModeUponShaking,
-        ),
       ],
     );
   }
@@ -37,17 +31,6 @@ class _PrivacyState extends State<Privacy> {
     if (newPrivacyMode == null) return;
 
     UserPreferencesService().privacyModeUponLaunch = newPrivacyMode;
-
-    if (!mounted) return;
-
-    PreferencesPage.of(context).reload();
-    setState(() {});
-  }
-
-  void updatePrivacyModeUponShaking(bool? newPrivacyMode) async {
-    if (newPrivacyMode == null) return;
-
-    UserPreferencesService().privacyModeUponShaking = newPrivacyMode;
 
     if (!mounted) return;
 

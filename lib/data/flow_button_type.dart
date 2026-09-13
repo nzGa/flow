@@ -21,7 +21,6 @@ enum FlowButtonType with LocalizedEnum {
   String get localizationEnumName => "FlowButtonType";
 
   static const List<FlowButtonType> defaultOrder = [
-    FlowButtonType.transfer,
     FlowButtonType.income,
     FlowButtonType.expense,
   ];

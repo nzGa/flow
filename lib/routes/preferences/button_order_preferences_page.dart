@@ -36,6 +36,7 @@ class ButtonOrderPreferencesPageState
     );
 
     transactionButtonOrder.remove(FlowButtonType.eny);
+    transactionButtonOrder.remove(FlowButtonType.transfer);
 
     final int count = transactionButtonOrder.length;
     final Size size = _calculateTotalSize(count);

@@ -3,7 +3,6 @@ import "dart:io";
 import "package:flow/l10n/flow_localizations.dart";
 import "package:flow/prefs/local_preferences.dart";
 import "package:flow/routes/preferences/language_selection_sheet.dart";
-import "package:flow/routes/preferences/sections/haptics.dart";
 import "package:flow/routes/preferences/sections/lock_app.dart";
 import "package:flow/routes/preferences/sections/privacy.dart";
 import "package:flow/services/local_auth.dart";
@@ -164,29 +163,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               trailing: const LeChevron(),
             ),
             ListTile(
-              title: Text("preferences.numpad".t(context)),
-              leading: const Icon(Symbols.dialpad_rounded),
-              onTap: () => _pushAndRefreshAfter("/preferences/numpad"),
-              subtitle: Text(
-                LocalPreferences().usePhoneNumpadLayout.get()
-                    ? "preferences.numpad.layout.modern".t(context)
-                    : "preferences.numpad.layout.classic".t(context),
-              ),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
-              title: Text("preferences.transactionButtonOrder".t(context)),
-              leading: const Icon(Symbols.action_key_rounded),
-              onTap: () =>
-                  _pushAndRefreshAfter("/preferences/transactionButtonOrder"),
-              subtitle: Text(
-                "preferences.transactionButtonOrder.description".t(context),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
               title: Text("preferences.changeVisuals".t(context)),
               leading: const Icon(Symbols.moving_rounded),
               onTap: () => _pushAndRefreshAfter("/preferences/changeVisuals"),
@@ -197,19 +173,6 @@ class PreferencesPageState extends State<PreferencesPage> {
             const SizedBox(height: 8.0),
             const Privacy(),
             if (_showLockApp) ...[const SizedBox(height: 8.0), const LockApp()],
-            const SizedBox(height: 24.0),
-            ListHeader("preferences.hapticFeedback".t(context)),
-            const SizedBox(height: 8.0),
-            const Haptics(),
-            const SizedBox(height: 24.0),
-            ListHeader("preferences.feedback".t(context)),
-            const SizedBox(height: 8.0),
-            ListTile(
-              title: Text("preferences.feedback.debugLogs".t(context)),
-              leading: const Icon(Symbols.bug_report_rounded),
-              onTap: () => context.push("/_debug/logs"),
-              trailing: const LeChevron(),
-            ),
             const SizedBox(height: 16.0),
           ],
         ),
