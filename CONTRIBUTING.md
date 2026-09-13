@@ -19,12 +19,12 @@ Instagram ([@sadespresso](https://instagram.com/sadespresso)) or email
 
 1. Fork the repository
 2. Reach out first (see above) so we're aligned on the change
-3. Create a feature branch off `develop`, e.g. `username/short-description`
+3. Create a feature branch off `main`, e.g. `username/short-description`
   (the name can be different, doesn't matter)
 4. Make changes on the new branch
 5. Ensure your code doesn't have any linter warnings, errors
   (Your editor will tell you, or you can run `flutter analyze`)
-6. Submit a PR to `develop` branch
+6. Submit a PR to `main` branch
 7. If your feature involves UI changes, add a short video demonstrating the
   implement change/feature
 
