@@ -1,7 +1,3 @@
-import "dart:io";
-
-import "package:cross_file/cross_file.dart";
-import "package:flow/constants.dart";
 import "package:flow/data/exchange_rates.dart";
 import "package:flow/data/money.dart";
 import "package:flow/data/transaction_programmable_object.dart";
@@ -23,12 +19,9 @@ import "package:flow/objectbox/actions.dart";
 import "package:flow/prefs/local_preferences.dart";
 import "package:flow/providers/accounts_provider.dart";
 import "package:flow/providers/categories_provider.dart";
-import "package:flow/providers/transaction_tags_provider.dart";
 import "package:flow/routes/transaction_page/input_amount_sheet.dart";
 import "package:flow/routes/transaction_page/section.dart";
 import "package:flow/routes/transaction_page/sections/description_section.dart";
-import "package:flow/routes/transaction_page/sections/files_section.dart";
-import "package:flow/routes/transaction_page/sections/tags_section.dart";
 import "package:flow/routes/transaction_page/select_recurrence.dart";
 import "package:flow/routes/transaction_page/select_recurrence_sheet.dart";
 import "package:flow/routes/transaction_page/select_recurring_update_mode_sheet.dart";
@@ -41,28 +34,19 @@ import "package:flow/services/transactions.dart";
 import "package:flow/services/user_preferences.dart";
 import "package:flow/theme/theme.dart";
 import "package:flow/utils/utils.dart";
-import "package:flow/widgets/general/button.dart";
 import "package:flow/widgets/general/directional_chevron.dart";
 import "package:flow/widgets/general/flow_icon.dart";
 import "package:flow/widgets/general/form_close_button.dart";
-import "package:flow/widgets/general/info_text.dart";
 import "package:flow/widgets/general/money_text.dart";
-import "package:flow/widgets/location_picker_sheet.dart";
-import "package:flow/widgets/open_street_map.dart";
 import "package:flow/widgets/sheets/select_account_sheet.dart";
 import "package:flow/widgets/sheets/select_category_sheet.dart";
-import "package:flow/widgets/sheets/select_transaction_tags_sheet.dart";
-import "package:flow/widgets/transaction/imported_from_eny.dart";
 import "package:flow/widgets/transaction/imported_from_siri.dart";
 import "package:flow/widgets/transaction/type_selector.dart";
 import "package:flutter/foundation.dart" hide Category;
 import "package:flutter/material.dart";
 import "package:flutter/scheduler.dart";
 import "package:flutter/services.dart";
-import "package:flutter_map/flutter_map.dart";
-import "package:geolocator/geolocator.dart";
 import "package:go_router/go_router.dart";
-import "package:latlong2/latlong.dart";
 import "package:logging/logging.dart";
 import "package:material_symbols_icons_flow/symbols.dart";
 import "package:moment_dart/moment_dart.dart";
@@ -105,18 +89,7 @@ class _TransactionPageState extends State<TransactionPage> {
   final FocusNode _selectAccountFocusNode = FocusNode();
   final FocusNode _selectAccountTransferToFocusNode = FocusNode();
 
-  final GlobalKey<FilesSectionState> _filesSectionKey = GlobalKey();
-
   Geo? _geo;
-  bool _geoHandpicked = false;
-
-  /// Device's current location, fetched independently of [_geo].
-  ///
-  /// Used to surface nearby tag suggestions even when editing an existing
-  /// transaction whose saved location differs from where the user is now.
-  Geo? _deviceGeo;
-
-  bool locationFailed = false;
 
   dynamic error;
 
@@ -144,10 +117,6 @@ class _TransactionPageState extends State<TransactionPage> {
   bool get pastDuePending => widget.isNewTransaction
       ? false
       : (_isPending && transactionDate.isPastAnchored());
-
-  late final bool enableGeo;
-
-  late final MapController? _mapController;
 
   bool get crossCurrencyTransfer =>
       isTransfer &&
@@ -199,6 +168,10 @@ class _TransactionPageState extends State<TransactionPage> {
       if (_transactionType == TransactionType.transfer) {
         _conversionRate = widget.params?.transferConversionRate ?? 1.0;
       }
+
+      if (_selectedAccount == null) {
+        _applyPrimaryAccount();
+      }
     } else {
       /// Transaction we're editing.
       _currentlyEditing = widget.isNewTransaction
@@ -243,12 +216,6 @@ class _TransactionPageState extends State<TransactionPage> {
         }
       }
     }
-
-    enableGeo = LocalPreferences().enableGeo.get();
-
-    _mapController = enableGeo ? MapController() : null;
-
-    tryFetchLocation();
 
     if (widget.isNewTransaction) {
       SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
@@ -446,13 +413,6 @@ class _TransactionPageState extends State<TransactionPage> {
                                 : null,
                           ),
                         ),
-                      TagsSection(
-                        selectTags: selectTags,
-                        selectedTags: _selectedTags,
-                        onTagsChanged: onTagsChanged,
-                        location: _geo,
-                        deviceLocation: _deviceGeo,
-                      ),
                       DescriptionSection(
                         value: _descriptionMarkdown,
                         focusNode: _descriptionFocusNode,
@@ -461,12 +421,6 @@ class _TransactionPageState extends State<TransactionPage> {
                             _descriptionMarkdown = value;
                           });
                         },
-                      ),
-                      FilesSection(
-                        key: _filesSectionKey,
-                        onAdd: addFiles,
-                        onRemove: removeFile,
-                        attachments: _attachments,
                       ),
                       if (_recurrence == null || !widget.isNewTransaction)
                         Section(
@@ -514,72 +468,6 @@ class _TransactionPageState extends State<TransactionPage> {
                                 ),
                         ),
                       ),
-
-                      if (_geo != null || enableGeo)
-                        Section(
-                          title: "transaction.location".t(context),
-                          child: Padding(
-                            padding: const .all(16.0),
-                            child: _geo == null
-                                ? Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          "assets/images/map_square.png",
-                                        ),
-                                      ),
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: .circular(8.0),
-                                    ),
-                                    child: AspectRatio(
-                                      aspectRatio: 1.0,
-                                      child: Center(
-                                        child: Button(
-                                          onTap: selectLocation,
-                                          trailing: const Icon(
-                                            Symbols.pin_drop_rounded,
-                                          ),
-                                          child: Text(
-                                            "transaction.location.add".t(
-                                              context,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                : Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: .circular(8.0),
-                                        child: AspectRatio(
-                                          aspectRatio: 1.0,
-                                          child: OpenStreetMap(
-                                            mapController: _mapController,
-                                            interactable: false,
-                                            onTap: (_) => selectLocation(),
-                                            center: LatLng(
-                                              _geo?.latitude ??
-                                                  sukhbaatarSquareCenterLat,
-                                              _geo?.longitude ??
-                                                  sukhbaatarSquareCenterLong,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      InfoText(
-                                        child: Text(
-                                          "transaction.location.edit".t(
-                                            context,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                          ),
-                        ),
 
                       if (_currentlyEditing != null)
                         Section(
@@ -631,7 +519,6 @@ class _TransactionPageState extends State<TransactionPage> {
                                     case String providerName) ...[
                                   const SizedBox(height: 8.0),
                                   switch (providerName.toLowerCase()) {
-                                    "eny" => const ImportedFromEny(),
                                     "siri" => const ImportedFromSiri(),
                                     _ => Text(
                                       "transaction.external.from".t(
@@ -656,52 +543,6 @@ class _TransactionPageState extends State<TransactionPage> {
         ),
       ),
     );
-  }
-
-  void tryFetchLocation() {
-    if (Platform.isLinux) return;
-    if (LocalPreferences().enableGeo.get() != true) return;
-
-    final bool autoAttach =
-        widget.isNewTransaction &&
-        LocalPreferences().autoAttachTransactionGeo.get() == true;
-
-    Geolocator.getLastKnownPosition()
-        .then((lastKnown) {
-          if (lastKnown == null) {
-            return;
-          }
-
-          final Geo geo = Geo.fromPosition(lastKnown);
-          _deviceGeo = geo;
-
-          // Only seed the transaction's location from a less-accurate
-          // last-known fix when we'd otherwise have nothing.
-          if (autoAttach && _geo == null) {
-            _geo = geo;
-          }
-
-          if (mounted) setState(() => {});
-        })
-        .catchError((e, stackTrace) {
-          _log.warning("Failed to get last known location", e, stackTrace);
-        });
-
-    Geolocator.getCurrentPosition()
-        .then((current) {
-          final Geo geo = Geo.fromPosition(current);
-          _deviceGeo = geo;
-          if (autoAttach) {
-            _geo = geo;
-          }
-        })
-        .catchError((e, stackTrace) {
-          locationFailed = true;
-          _log.warning("Failed to get current location", e, stackTrace);
-        })
-        .whenComplete(() {
-          if (mounted) setState(() => {});
-        });
   }
 
   void updateTransactionType(TransactionType type) {
@@ -971,33 +812,6 @@ class _TransactionPageState extends State<TransactionPage> {
     return;
   }
 
-  void selectLocation() async {
-    final Optional<LatLng>? result =
-        await showModalBottomSheet<Optional<LatLng>>(
-          context: context,
-          builder: (context) => LocationPickerSheet(
-            latitude: _geo?.latitude,
-            longitude: _geo?.longitude,
-          ),
-          isScrollControlled: true,
-        );
-
-    if (result != null) {
-      final LatLng? newLatLng = result.value;
-
-      _geoHandpicked = newLatLng?.toSexagesimal() != _geo?.toSexagesimal();
-      _geo = newLatLng == null ? null : Geo.fromLatLng(newLatLng);
-
-      if (newLatLng != null) {
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          _mapController?.move(newLatLng, _mapController.camera.zoom);
-        });
-      }
-    }
-
-    setState(() {});
-  }
-
   bool _ensureAccountsSelected() {
     if (_selectedAccount == null) {
       context.showErrorToast(
@@ -1028,54 +842,6 @@ class _TransactionPageState extends State<TransactionPage> {
     );
 
     _recurrence ??= result;
-
-    setState(() {});
-  }
-
-  void onTagsChanged(List<TransactionTag> newTags) {
-    _selectedTags = newTags;
-
-    setState(() {});
-  }
-
-  Future<void> selectTags([bool fromAutomatedFlow = false]) async {
-    final List<TransactionTag> allTags = TransactionTagsProvider.of(
-      context,
-    ).tags;
-
-    if (fromAutomatedFlow && allTags.isEmpty) {
-      return;
-    }
-
-    List<TransactionTag>? streamedTags;
-
-    final List<TransactionTag>? tags = await showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) => Builder(
-        builder: (context) {
-          final List<TransactionTag> allTags = TransactionTagsProvider.of(
-            context,
-          ).tags;
-
-          return SelectTransactionTagsSheet(
-            tags: allTags,
-            initialTagUuids: _selectedTags?.map((e) => e.uuid).toList(),
-            onChanged: (selected) {
-              streamedTags = selected;
-            },
-          );
-        },
-      ),
-    );
-
-    if (tags != null) {
-      _selectedTags = tags;
-    } else if (streamedTags != null) {
-      _selectedTags = streamedTags;
-    }
-
-    if (!mounted) return;
 
     setState(() {});
   }
@@ -1334,7 +1100,6 @@ class _TransactionPageState extends State<TransactionPage> {
           : _currentlyEditing.amount != _amount;
 
       return amountChanged ||
-          _geoHandpicked ||
           (_currentlyEditing.title ?? "") != _titleController.text ||
           (_currentlyEditing.description ?? "") !=
               (_descriptionMarkdown ?? "") ||
@@ -1354,7 +1119,6 @@ class _TransactionPageState extends State<TransactionPage> {
     }
 
     return _amount != 0 ||
-        _geoHandpicked ||
         _titleController.text.isNotEmpty ||
         _descriptionMarkdown?.isNotEmpty == true ||
         _selectedAccount != null ||
@@ -1459,54 +1223,15 @@ class _TransactionPageState extends State<TransactionPage> {
     return null;
   }
 
-  void removeFile(FileAttachment attachment) {
-    _attachments = _attachments
-        ?.where((a) => a.uuid != attachment.uuid)
-        .toList();
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  void addFiles(List<XFile> files) async {
-    for (XFile file in files) {
-      try {
-        final FileAttachment? attachment = await FileAttachmentService()
-            .createFromXFile(file);
-
-        if (attachment != null) {
-          _attachments ??= [];
-          _attachments!.add(attachment);
-        } else {
-          if (mounted) {
-            context.showErrorToast(error: "error.sync.fileNotFound".t(context));
-          }
-        }
-      } catch (e) {
-        if (mounted) {
-          context.showErrorToast(error: "error.sync.fileNotFound".t(context));
-        }
-        _log.warning("Failed to add file attachment", e);
-      }
-    }
-
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  void _selectPrimaryAccount() {
+  void _applyPrimaryAccount() {
     try {
-      final primaryAccountUuid = UserPreferencesService().primaryAccountUuid;
+      final String primaryAccountUuid =
+          UserPreferencesService().primaryAccountUuid;
       _selectedAccount = AccountsService().findOneActiveSync(
         primaryAccountUuid,
       );
-    } catch (e) {
-      //
-    } finally {
-      if (mounted) {
-        setState(() {});
-      }
+    } catch (_) {
+      // No accounts yet; save() still validates.
     }
   }
 
@@ -1514,13 +1239,10 @@ class _TransactionPageState extends State<TransactionPage> {
     for (final entry in flow.actions) {
       switch (entry) {
         case TransactionEntryAction.selectAccount:
-          if (flow.skipSelectedFields && _selectedAccount != null) {
-            //
-          } else {
-            await selectAccount(true);
-            if (flow.abandonUponActionCancelled && _selectedAccount == null) {
-              return;
-            }
+        case TransactionEntryAction.selectPrimaryAccount:
+          if (_selectedAccount == null) {
+            _applyPrimaryAccount();
+            if (mounted) setState(() {});
           }
         case TransactionEntryAction.selectCategoryOrTransferAccount:
           if (isTransfer) {
@@ -1553,39 +1275,8 @@ class _TransactionPageState extends State<TransactionPage> {
             }
           }
         case TransactionEntryAction.selectTags:
-          if (flow.skipSelectedFields &&
-              _selectedTags != null &&
-              _selectedTags!.isNotEmpty) {
-            //
-          } else {
-            await selectTags(true);
-          }
-        case TransactionEntryAction.selectPrimaryAccount:
-          if (isTransfer) {
-            if (flow.skipSelectedFields && _selectedAccount != null) {
-              //
-            } else {
-              await selectAccount(true);
-              if (flow.abandonUponActionCancelled && _selectedAccount == null) {
-                return;
-              }
-            }
-          } else {
-            if (flow.skipSelectedFields && _selectedAccount != null) {
-              //
-            } else {
-              _selectPrimaryAccount();
-              if (flow.abandonUponActionCancelled && _selectedAccount == null) {
-                return;
-              }
-            }
-          }
         case TransactionEntryAction.attachFiles:
-          if (flow.skipSelectedFields && _attachments?.isNotEmpty == true) {
-            //
-          } else {
-            await _filesSectionKey.currentState?.pickFile();
-          }
+          break;
         case TransactionEntryAction.inputTitle:
           SchedulerBinding.instance.addPostFrameCallback((_) {
             if (flow.skipSelectedFields) {

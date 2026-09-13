@@ -1,0 +1,15 @@
+This is a modified version of Flow, originally written by Batmend
+Ganbaatar and other contributors.
+
+Original project: https://github.com/flow-mn/flow
+Original copyright: Copyright (C) 2024 Batmend Ganbaatar and authors of Flow
+
+This modified version was created in September 2026. It remains free
+software under the GNU General Public License version 3 (see LICENSE).
+
+Changes from the original include removal of Eny integrations, community
+and in-app support pages, geographic tagging and spending maps,
+transaction file attachments / camera / Markdown notes, transaction
+tags from the UI, and scheduled operating-system notifications.
+
+The original authors are not responsible for this modified version.

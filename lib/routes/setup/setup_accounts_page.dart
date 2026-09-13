@@ -1,19 +1,11 @@
 import "package:flow/data/setup/default_accounts.dart";
-import "package:flow/entity/account.dart";
-import "package:flow/l10n/extensions.dart";
-import "package:flow/objectbox.dart";
-import "package:flow/objectbox/objectbox.g.dart";
 import "package:flow/services/user_preferences.dart";
-import "package:flow/utils/utils.dart";
-import "package:flow/widgets/general/button.dart";
-import "package:flow/widgets/general/info_text.dart";
-import "package:flow/widgets/setup/accounts/account_preset_card.dart";
-import "package:flow/widgets/setup/accounts/add_account_card.dart";
+import "package:flow/widgets/general/spinner.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
-import "package:local_hero/local_hero.dart";
-import "package:material_symbols_icons_flow/symbols.dart";
 
+/// Kept as a route so old onboarding stacks still resolve. The account
+/// picker is skipped; a default primary account is created if needed.
 class SetupAccountsPage extends StatefulWidget {
   const SetupAccountsPage({super.key});
 
@@ -22,174 +14,20 @@ class SetupAccountsPage extends StatefulWidget {
 }
 
 class _SetupAccountsPageState extends State<SetupAccountsPage> {
-  QueryBuilder<Account> qb() =>
-      ObjectBox().box<Account>().query().order(Account_.createdDate);
-
-  late List<Account> presetAccounts;
-
-  bool busy = false;
-
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _skip());
+  }
 
-    UserPreferencesService().valueNotifier.addListener(_updatePresets);
-    _updatePresets();
+  Future<void> _skip() async {
+    await ensureDefaultAccount(UserPreferencesService().primaryCurrency);
+    if (!mounted) return;
+    context.pushReplacement("/setup/categories");
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("setup.accounts.setup".t(context))),
-      body: StreamBuilder<List<Account>>(
-        stream: qb()
-            .watch(triggerImmediately: true)
-            .map((event) => event.find()),
-        builder: (context, snapshot) {
-          final List<Account> currentAccounts = snapshot.data ?? [];
-          final List<Account> uniquePresets = presetAccounts
-              .where(
-                (preset) => !currentAccounts.any(
-                  (account) => account.uuid == preset.uuid,
-                ),
-              )
-              .toList();
-
-          return SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    InfoText(
-                      child: Text("setup.accounts.description".t(context)),
-                    ),
-                    const SizedBox(height: 16.0),
-                    const AddAccountCard(),
-                    const SizedBox(height: 16.0),
-                    ...currentAccounts.map(
-                      (account) => Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: AccountPresetCard(
-                          key: ValueKey(account.uuid),
-                          account: account,
-                          onSelect: null,
-                          selected: true,
-                          preexisting: true,
-                        ),
-                      ),
-                    ),
-                    LocalHeroScope(
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeOut,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: uniquePresets
-                            .map(
-                              (preset) => Padding(
-                                padding: const EdgeInsets.only(bottom: 16.0),
-                                child: LocalHero(
-                                  key: ValueKey(preset.uuid),
-                                  tag: preset.uuid,
-                                  child: AccountPresetCard(
-                                    key: ValueKey(preset.uuid),
-                                    account: preset,
-                                    onSelect: (selected) =>
-                                        select(preset.uuid, selected),
-                                    selected: preset.id == 0,
-                                    preexisting: false,
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              const Spacer(),
-              Button(
-                onTap: busy ? null : save,
-                trailing: const Icon(Symbols.chevron_right_rounded),
-                child: Text("setup.next".t(context)),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void loadPresets() {}
-
-  void select(String uuid, bool selected) {
-    final Account? preset = presetAccounts.firstWhereOrNull(
-      (element) => element.uuid == uuid,
-    );
-
-    if (preset != null) {
-      preset.id = selected ? 0 : -1;
-    }
-
-    presetAccounts.sort((a, b) => b.id.compareTo(a.id));
-    setState(() {});
-  }
-
-  void save() async {
-    if (busy) return;
-
-    setState(() {
-      busy = true;
-    });
-
-    try {
-      final List<Account> selectedAccounts = presetAccounts
-          .where((element) => element.id == 0)
-          .toList();
-
-      for (final e in selectedAccounts.indexed) {
-        e.$2.sortOrder = e.$1;
-      }
-
-      await ObjectBox().box<Account>().putManyAsync(selectedAccounts);
-
-      presetAccounts.removeWhere(
-        (element) =>
-            selectedAccounts.indexWhere(
-              (selected) => element.uuid == selected.uuid,
-            ) !=
-            -1,
-      );
-
-      if (mounted) {
-        await context.push("/setup/categories");
-      }
-    } finally {
-      busy = false;
-      if (mounted) {
-        setState(() {});
-      }
-    }
-  }
-
-  void _updatePresets() {
-    final String primaryCurrency = UserPreferencesService().primaryCurrency;
-
-    presetAccounts = getAccountPresets(primaryCurrency).toList();
-
-    if (mounted) {
-      setState(() {});
-    }
+    return const Scaffold(body: Spinner.center());
   }
 }

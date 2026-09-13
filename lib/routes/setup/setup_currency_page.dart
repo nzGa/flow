@@ -1,3 +1,4 @@
+import "package:flow/data/setup/default_accounts.dart";
 import "package:flow/l10n/extensions.dart";
 import "package:flow/services/user_preferences.dart";
 import "package:flow/theme/theme.dart";
@@ -128,8 +129,10 @@ class _SetupCurrencyPageState extends State<SetupCurrencyPage> {
 
     UserPreferencesService().primaryCurrency = _currency!;
 
+    await ensureDefaultAccount(_currency!);
+
     if (!mounted) return;
 
-    await context.push("/setup/accounts");
+    await context.push("/setup/categories");
   }
 }

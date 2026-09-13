@@ -1,8 +1,13 @@
-# ![Flow logo](logo@32.png) Flow
+# ![Flow logo](logo@32.png) Flow (modified)
 
-[![Buy me a coffee](https://img.shields.io/badge/buy_me_a_coffee-sadespresso-f5ccff?logo=buy-me-a-coffee&logoColor=white&style=for-the-badge)](https://buymeacoffee.com/sadespresso)
-[![Website](https://img.shields.io/badge/Website-flow.gege.mn-f5ccff?style=for-the-badge)](https://flow.gege.mn)&nbsp;
-[![Flow's GitHub repo](https://img.shields.io/badge/GitHub-flow--mn/flow-f5ccff?logo=github&logoColor=white&style=for-the-badge)](https://github.com/flow-mn/flow)
+This repository is a **modified version** of [Flow](https://github.com/flow-mn/flow)
+(September 2026). It remains free software under the
+[GNU General Public License v3](./LICENSE).
+
+Original copyright: Copyright (C) 2024 Batmend Ganbaatar and authors of Flow.
+See [NOTICE](./NOTICE) for attribution and a summary of what changed.
+
+The original authors are not responsible for this fork.
 
 ## Preface
 
@@ -10,35 +15,26 @@
 expense tracker — built with a focus on great UX, works fully offline, and runs
 seamlessly across platforms.
 
-## Download Flow (beta)
+This fork keeps the core tracker (accounts, transactions, categories, budgets,
+and stats) and removes Eny, in-app support/community pages, geographic tagging
+and spending maps, and transaction attachments / camera / Markdown notes.
 
-[![Google Play Store](https://img.shields.io/badge/Google_Play_Store-beta-f5ccff?logo=google-play&logoColor=white&style=for-the-badge)](https://play.google.com/store/apps/details?id=mn.flow.flow)
-[![App Store](https://img.shields.io/badge/App_Store-beta-f5ccff?logo=appstore&logoColor=white&style=for-the-badge)](https://apps.apple.com/mn/app/flow-expense-tracker/id6477741670)
-[![Obtanium](https://img.shields.io/badge/Obtainium-beta-f5ccff?logo=obtainium&logoColor=white&style=for-the-badge)](https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22mn.flow.flow%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fflow-mn%2Fflow%22%2C%22author%22%3A%22flow-mn%22%2C%22name%22%3A%22Flow%22%2C%22preferredApkIndex%22%3A0%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Afalse%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22appAuthor%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%2C%5C%22refreshBeforeDownload%5C%22%3Afalse%7D%22%2C%22overrideSource%22%3Anull%7D)
-[![Other build files](https://img.shields.io/badge/releases-other_build_files-f5ccff?logo=github&logoColor=white&style=for-the-badge)](https://github.com/flow-mn/flow/releases/latest)
+## Download
+
+Build from source. Store listings below belong to the **original** Flow app,
+not this fork.
+
+[![Google Play Store](https://img.shields.io/badge/Google_Play_Store-original_Flow-f5ccff?logo=google-play&logoColor=white&style=for-the-badge)](https://play.google.com/store/apps/details?id=mn.flow.flow)
+[![App Store](https://img.shields.io/badge/App_Store-original_Flow-f5ccff?logo=appstore&logoColor=white&style=for-the-badge)](https://apps.apple.com/mn/app/flow-expense-tracker/id6477741670)
+[![Original GitHub](https://img.shields.io/badge/GitHub-flow--mn/flow-f5ccff?logo=github&logoColor=white&style=for-the-badge)](https://github.com/flow-mn/flow)
 
 > You can build and run for Linux and macOS. Haven't tested Windows yet[^2]
-
-## Supercharge Flow with Eny: AI receipt parser
-
-I also made an AI-based receipt parser. Snap a photo of your receipt (yes, inside Flow), and it'll be added. Check it out at <https://eny.gege.mn/>
-
-<!-- markdownlint-disable-next-line -->
-<a href="https://eny.gege.mn">
-  <!-- markdownlint-disable-next-line -->
-  <picture>
-    <!-- markdownlint-disable-next-line -->
-    <source srcset="https://cdn.gege.mn/eny/2026-02-28/5b374d28-43d5-4276-a7b2-dab81ea684be/fxe.png 1x, https://cdn.gege.mn/eny/2026-02-28/5b374d28-43d5-4276-a7b2-dab81ea684be/fxe@2x.png 2x, https://cdn.gege.mn/eny/2026-02-28/5b374d28-43d5-4276-a7b2-dab81ea684be/fxe@3x.png 3x">
-    <!-- markdownlint-disable-next-line -->
-    <img src="https://cdn.gege.mn/eny/2026-02-28/5b374d28-43d5-4276-a7b2-dab81ea684be/fxe.png" alt="Supercharged by Eny: Parse receipts straight from Flow" width="440">
-  </picture>
-</a>
 
 ## Features
 
 * Simple UX helping you efficiently track your finances
 * Infinite accounts and currencies (including various cryptos)
-* Categories, tags, file attachments, geo tagging (optional)
+* Categories, tags
 * Reflect on your spendings
 * Fully-offline[^1]
 * Full control over your data
@@ -46,7 +42,6 @@ I also made an AI-based receipt parser. Snap a photo of your receipt (yes, insid
   * Fully recoverable backups (ZIP/JSON)
   * Export CSV, PDFs
   * Periodic auto-backups to iCloud
-* Absolutely free ([please donate 🥺](#support-flow))
 * [URI-based automation](#uri-based-automation)
 
 ## URI-based automation
@@ -134,25 +129,15 @@ Install ObjectBox dynamic libraries[^3]:
 
 Run tests with: `flutter test`
 
-## Support Flow
+## Support the original Flow
 
-Flow is a personal project developed during my free time, and it generates no
-income. Consider helping Flow! Here are some suggestions:
+This fork is independent. If you want to support the original project:
 
-* Give a star on [GitHub](https://github.com/flow-mn/flow)
-* Leave a review on [Google Play](https://play.google.com/store/apps/details?id=mn.flow.flow)
-  and [App Store](https://apps.apple.com/mn/app/flow-expense-tracker/id6477741670)
-* Tell a friend
-* [Buy me a coffee](https://buymeacoffee.com/sadespresso)
-  <!-- markdownlint-disable-next-line -->
-  <a href="https://www.buymeacoffee.com/sadespresso"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=sadespresso&button_colour=BD5FFF&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00" /></a>
-  
-Maintaining Flow on the App Store requires a substantial annual fee
-(see [Apple Developer Program](https://developer.apple.com/support/enrollment/#:~:text=The%20Apple%20Developer%20Program%20annual,in%20local%20currency%20where%20available.)),
-which [I currently cover](https://github.com/sadespresso).  To ensure Flow's
-continued existence and future development, your support is greatly appreciated.
+* Star [flow-mn/flow](https://github.com/flow-mn/flow)
+* [Buy the original maintainer a coffee](https://buymeacoffee.com/sadespresso)
 
-Thank you to all the contributors, supporters, testers, and those who contributed indirectly 🤍
+Thank you to all the original contributors, supporters, testers, and those who
+contributed indirectly 🤍
 
 ## List of supported languages
 

@@ -74,16 +74,6 @@ class NavigationService {
       return;
     }
 
-    if (path == "integrate/eny") {
-      if (uri.queryParameters["apiKey"] case String candidate
-          when candidate.startsWith("eny")) {
-        NavigationService().add("/integrate/eny?${uri.query}");
-      } else {
-        _log.info("Ignoring Eny link with no API key in query: $uri");
-      }
-      return;
-    }
-
     // Budget home-screen widgets: the rollup opens the overview it mirrors,
     // the pinned one opens the budget it is showing.
     if (path == "budgets" || path == "stats/budgets") {

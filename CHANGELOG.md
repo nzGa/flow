@@ -1,5 +1,15 @@
 # Changelog
 
+## next
+
+### Changes
+
+* This is a modified version of Flow. Removed Eny, community/support pages,
+  geo tagging and spending maps, transaction attachments / Markdown notes,
+  budgets, transaction tags, and scheduled OS notifications from the UI.
+  Income and expense no longer prompt for an account (the primary account is
+  used). Licensed under GNU GPL v3; see NOTICE.
+
 ## 0.24.0
 
 ### Features

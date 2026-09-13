@@ -945,5 +945,9 @@
   "transactions.query.filter.transactionType": "类型",
   "transactions.query.noResult": "没有可显示的交易",
   "transactions.query.noResult.description": "尝试更新您的过滤条件",
-  "visitGitHubRepo": "前往 GitHub 查看"
+  "visitGitHubRepo": "前往 GitHub 查看",
+  "tabs.profile.legal": "License",
+  "tabs.profile.license": "GNU GPL v3",
+  "tabs.profile.originalProject": "Original Flow project",
+  "tabs.profile.license.description": "This is a modified version of Flow (September 2026). It is free software under the GNU General Public License version 3. Original copyright: Batmend Ganbaatar and authors of Flow. The original authors are not responsible for this modified version. See LICENSE and NOTICE in the source repository."
 }

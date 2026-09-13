@@ -18,12 +18,10 @@ import "package:flow/services/currency_registry.dart";
 import "package:flow/utils/optional.dart";
 import "package:flow/widgets/sheets/select_multi_currency_sheet.dart";
 import "package:flow/widgets/sheets/select_multi_transaction_type_sheet.dart";
-import "package:flow/widgets/sheets/select_transaction_tags_sheet.dart";
 import "package:flow/widgets/transaction_filter_head.dart";
 import "package:flow/widgets/transaction_filter_head/create_filter_preset_sheet.dart";
 import "package:flow/widgets/transaction_filter_head/select_filter_preset_sheet.dart";
 import "package:flow/widgets/transaction_filter_head/select_group_range_sheet.dart";
-import "package:flow/widgets/transaction_filter_head/select_has_attachment_sheet.dart";
 import "package:flow/widgets/transaction_filter_head/select_is_pending_sheet.dart";
 import "package:flow/widgets/transaction_filter_head/select_multi_account_sheet.dart";
 import "package:flow/widgets/transaction_filter_head/select_multi_category_sheet.dart";
@@ -195,25 +193,6 @@ class _DefaultTransactionsFilterHeadState
                       ?.mappedFilter(categories, (category) => category.uuid)
                       .toSet(),
                 ),
-              if (tags != null && tags.isNotEmpty == true)
-                TransactionFilterChip<Set<TransactionTag>>(
-                  translationKey: "transactions.query.filter.tags",
-                  avatar: const Icon(Symbols.style_rounded),
-                  onSelect: onSelectTags,
-                  defaultValue: widget.defaultFilter.tags
-                      ?.mappedFilter(tags, (tag) => tag.uuid)
-                      .toSet(),
-                  value: _filter.tags
-                      ?.mappedFilter(tags, (tag) => tag.uuid)
-                      .toSet(),
-                ),
-              TransactionFilterChip<bool?>(
-                translationKey: "transactions.query.filter.hasAttachments",
-                avatar: const Icon(Symbols.attach_file_rounded),
-                onSelect: onSelectHasAttachments,
-                defaultValue: null,
-                value: _filter.hasAttachments,
-              ),
               TransactionFilterChip<bool?>(
                 translationKey: "transactions.query.filter.isPending",
                 avatar: const Icon(Symbols.search_activity_rounded),
@@ -338,32 +317,6 @@ class _DefaultTransactionsFilterHeadState
     });
   }
 
-  void onSelectTags() async {
-    final List<TransactionTag> allTags = TransactionTagsProvider.of(
-      context,
-    ).tags;
-
-    final List<TransactionTag>? tags =
-        await showModalBottomSheet<List<TransactionTag>>(
-          context: context,
-          builder: (context) => SelectTransactionTagsSheet(
-            tags: allTags,
-            initialTagUuids: filter.tags?.filter(
-              allTags.map((tag) => tag.uuid).toList(),
-            ),
-          ),
-          isScrollControlled: true,
-        );
-
-    if (tags != null) {
-      setState(() {
-        filter = filter.copyWithOptional(
-          tags: Optional(.whitelist(tags.map((tag) => tag.uuid).toList())),
-        );
-      });
-    }
-  }
-
   void onSelectType() async {
     final List<TransactionType>? types =
         await showModalBottomSheet<List<TransactionType>>(
@@ -436,19 +389,6 @@ class _DefaultTransactionsFilterHeadState
       filter = filter.copyWithOptional(
         range: Optional(newTransactionFilterTimeRange),
       );
-    });
-  }
-
-  void onSelectHasAttachments() async {
-    final Optional<bool>? hasAttachments = await showModalBottomSheet(
-      context: context,
-      builder: (context) => SelectHasAttachmentSheet(),
-    );
-
-    if (hasAttachments == null || !mounted) return;
-
-    setState(() {
-      filter = filter.copyWithOptional(hasAttachments: hasAttachments);
     });
   }
 

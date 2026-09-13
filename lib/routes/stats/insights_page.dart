@@ -1,8 +1,6 @@
 import "package:flow/l10n/extensions.dart";
 import "package:flow/widgets/general/frame.dart";
-import "package:flow/widgets/home/stats/bento/budget_tile.dart";
 import "package:flow/widgets/home/stats/bento/calendar_tile.dart";
-import "package:flow/widgets/home/stats/bento/map_tile.dart";
 import "package:flow/widgets/home/stats/bento/net_worth_tile.dart";
 import "package:flow/widgets/home/stats/bento/recurring_tile.dart";
 import "package:flow/widgets/home/stats/bento/wrapped_tile.dart";
@@ -40,8 +38,6 @@ class InsightsPage extends StatelessWidget {
                   const SizedBox(height: 12.0),
                   const NetWorthTile(),
                   const SizedBox(height: 12.0),
-                  const BudgetTile(),
-                  const SizedBox(height: 12.0),
                   const Row(
                     spacing: 12.0,
                     children: [
@@ -49,8 +45,6 @@ class InsightsPage extends StatelessWidget {
                       Expanded(child: RecurringTile()),
                     ],
                   ),
-                  const SizedBox(height: 12.0),
-                  const MapTile(),
                   const SizedBox(height: 24.0),
                 ],
               ),

@@ -12,11 +12,9 @@ import "package:flow/routes/budgets_page.dart";
 import "package:flow/routes/categories_page.dart";
 import "package:flow/routes/category/category_edit_page.dart";
 import "package:flow/routes/category_page.dart";
-import "package:flow/routes/community/contributors_page.dart";
 import "package:flow/routes/debug/debug_icloud_page.dart";
 import "package:flow/routes/debug/debug_log_page.dart";
 import "package:flow/routes/debug/debug_logs_page.dart";
-import "package:flow/routes/debug/debug_scheduled_notifications_page.dart";
 import "package:flow/routes/debug/debug_theme_page.dart";
 import "package:flow/routes/error_page.dart";
 import "package:flow/routes/export/export_history_page.dart";
@@ -29,19 +27,14 @@ import "package:flow/routes/import_wizard/csv.dart";
 import "package:flow/routes/import_wizard/ivy.dart";
 import "package:flow/routes/import_wizard/v1.dart";
 import "package:flow/routes/import_wizard/v2.dart";
-import "package:flow/routes/integrate/integrate_eny_page.dart";
-import "package:flow/routes/integrations/eny_page.dart";
 import "package:flow/routes/preferences/button_order_preferences_page.dart";
 import "package:flow/routes/preferences/change_preferences_page.dart";
-import "package:flow/routes/preferences/integrations/eny_preferences_page.dart";
 import "package:flow/routes/preferences/money_formatting_preferences_page.dart";
 import "package:flow/routes/preferences/numpad_preferences_page.dart";
 import "package:flow/routes/preferences/pending_transactions_preferences_page.dart";
-import "package:flow/routes/preferences/reminders_preferences_page.dart";
 import "package:flow/routes/preferences/sync_preferences_page.dart";
 import "package:flow/routes/preferences/theme_preferences_page.dart";
 import "package:flow/routes/preferences/transaction_entry_flow_preferences_page.dart";
-import "package:flow/routes/preferences/transaction_geo_preferences_page.dart";
 import "package:flow/routes/preferences/transaction_list_item_appearance_preferences_page.dart";
 import "package:flow/routes/preferences/transfer_preferences_page.dart";
 import "package:flow/routes/preferences/trash_bin_preferences_page.dart";
@@ -60,17 +53,12 @@ import "package:flow/routes/stats/insights_page.dart";
 import "package:flow/routes/stats/net_worth_page.dart";
 import "package:flow/routes/stats/recurring_page.dart";
 import "package:flow/routes/stats/spending_calendar_page.dart";
-import "package:flow/routes/stats/spending_map_page.dart";
 import "package:flow/routes/stats/stats_by_group_page.dart";
 import "package:flow/routes/stats/wrapped_page.dart";
-import "package:flow/routes/support_page.dart";
 import "package:flow/routes/transaction_batch_import_page.dart";
 import "package:flow/routes/transaction_page.dart";
-import "package:flow/routes/transaction_tag_page.dart";
-import "package:flow/routes/transaction_tags_page.dart";
 import "package:flow/routes/transactions_page.dart";
 import "package:flow/routes/utils/crop_square_image_page.dart";
-import "package:flow/routes/utils/edit_markdown_page.dart";
 import "package:flow/sync/export/mode.dart";
 import "package:flow/sync/import/external/ivy_wallet_csv.dart";
 import "package:flow/sync/import/import_csv.dart";
@@ -110,10 +98,6 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/transaction/new",
       redirect: (context, state) {
-        if (state.uri.queryParameters["type"]?.toLowerCase() == "eny") {
-          return "/integrations/eny";
-        }
-
         if (state.uri.queryParameters["json"] case String jason
             when jason.isNotEmpty) {
           return "/transaction/batch-import?json=${Uri.encodeComponent(jason)}";
@@ -166,23 +150,6 @@ final GoRouter router = GoRouter(
       path: "/transactions/deleted",
       builder: (context, state) =>
           TransactionsPage.deleted(title: "transaction.deleted".t(context)),
-    ),
-    GoRoute(path: "/integrations/eny", builder: (context, state) => EnyPage()),
-    GoRoute(
-      path: "/integrate/eny",
-      redirect: (context, state) {
-        final String? apiKeyToConnect = state.uri.queryParameters["apiKey"];
-
-        if (apiKeyToConnect != null && apiKeyToConnect.isNotEmpty) {
-          return null;
-        }
-
-        return "/not-found";
-      },
-      builder: (context, state) => IntegrateEnyPage(
-        apiKey: state.uri.queryParameters["apiKey"]!,
-        email: state.uri.queryParameters["email"],
-      ),
     ),
     GoRoute(
       path: "/account/new",
@@ -266,20 +233,6 @@ final GoRouter router = GoRouter(
           BudgetPage(budgetId: int.tryParse(state.pathParameters["id"]!) ?? -1),
     ),
     GoRoute(
-      path: "/transactionTags",
-      builder: (context, state) => const TransactionTagsPage(),
-    ),
-    GoRoute(
-      path: "/transactionTags/new",
-      builder: (context, state) => const TransactionTagPage.create(),
-    ),
-    GoRoute(
-      path: "/transactionTags/:id",
-      builder: (context, state) => TransactionTagPage(
-        tagId: int.tryParse(state.pathParameters["id"]!) ?? -1,
-      ),
-    ),
-    GoRoute(
       path: "/preferences",
       builder: (context, state) => const PreferencesPage(),
       routes: [
@@ -301,16 +254,8 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const TransferPreferencesPage(),
         ),
         GoRoute(
-          path: "reminders",
-          builder: (context, state) => const RemindersPreferencesPage(),
-        ),
-        GoRoute(
           path: "transactionButtonOrder",
           builder: (context, state) => const ButtonOrderPreferencesPage(),
-        ),
-        GoRoute(
-          path: "transactionGeo",
-          builder: (context, state) => const TransactionGeoPreferencesPage(),
         ),
         GoRoute(
           path: "transactionEntryFlow",
@@ -338,10 +283,6 @@ final GoRouter router = GoRouter(
           builder: (context, state) =>
               const TransactionListItemAppearancePreferencesPage(),
         ),
-        GoRoute(
-          path: "integrations/eny",
-          builder: (context, state) => const EnyPreferencesPage(),
-        ),
       ],
     ),
     GoRoute(path: "/profile", builder: (context, state) => const ProfilePage()),
@@ -362,28 +303,6 @@ final GoRouter router = GoRouter(
           _ => throw const ErrorPage(
             error:
                 "Invalid state. Pass [CropSquareImagePageProps] object to `extra` prop",
-          ),
-        };
-      },
-    ),
-    GoRoute(
-      path: "/utils/editmd",
-      pageBuilder: (context, state) {
-        return switch (state.extra) {
-          null => MaterialPage(
-            child: EditMarkdownPage(),
-            fullscreenDialog: true,
-          ),
-          EditMarkdownPageProps props => MaterialPage(
-            child: EditMarkdownPage(
-              initialValue: props.initialValue,
-              maxLength: props.maxLength,
-            ),
-            fullscreenDialog: true,
-          ),
-          _ => throw const ErrorPage(
-            error:
-                "Invalid state. Pass [EditMarkdownPageProps] object or nothing to `extra` prop",
           ),
         };
       },
@@ -510,7 +429,6 @@ final GoRouter router = GoRouter(
         ),
       ],
     ),
-    GoRoute(path: "/support", builder: (context, state) => const SupportPage()),
     GoRoute(
       path: "/stats/category",
       builder: (context, state) {
@@ -530,10 +448,6 @@ final GoRouter router = GoRouter(
 
         return StatsByGroupPage(byCategory: false, initialRange: initialRange);
       },
-    ),
-    GoRoute(
-      path: "/community/contributors",
-      builder: (context, state) => const ContributorsPage(),
     ),
     GoRoute(
       path: "/_debug/theme",
@@ -564,16 +478,8 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const CashFlowPage(),
     ),
     GoRoute(
-      path: "/stats/map",
-      builder: (context, state) => const SpendingMapPage(),
-    ),
-    GoRoute(
       path: "/stats/budgets",
       builder: (context, state) => const BudgetsOverviewPage(),
-    ),
-    GoRoute(
-      path: "/_debug/scheduledNotifications",
-      builder: (context, state) => DebugScheduledNotificationsPage(),
     ),
     GoRoute(
       path: "/_debug/iCloud",

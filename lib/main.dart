@@ -1,6 +1,7 @@
-// Flow - A personal finance tracking app
+// Flow - A personal finance tracking app (modified version, Sep 2026)
 //
 // Copyright (C) 2024 Batmend Ganbaatar and authors of Flow
+// Copyright (C) 2026 authors of this modified version
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,7 +35,6 @@ import "package:flow/providers/transaction_tags_provider.dart";
 import "package:flow/routes.dart";
 import "package:flow/services/currency_registry.dart";
 import "package:flow/services/exchange_rates.dart";
-import "package:flow/services/in_app_purchase.dart";
 import "package:flow/services/integrations/siri_pending.dart";
 import "package:flow/services/local_auth.dart";
 import "package:flow/services/navigation.dart";
@@ -53,7 +53,6 @@ import "package:flutter/material.dart";
 import "package:flutter/scheduler.dart";
 import "package:flutter/services.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
-import "package:flutter_quill/flutter_quill.dart";
 import "package:intl/intl.dart";
 import "package:logging/logging.dart";
 import "package:logging_appenders/logging_appenders.dart";
@@ -90,6 +89,27 @@ void main() async {
     await windowManager.ensureInitialized().catchError((error) {
       startupLog.severe("Failed to initialize window manager", error);
     });
+    await windowManager
+        .waitUntilReadyToShow(
+          const WindowOptions(
+            size: Size(800, 600),
+            center: true,
+            skipTaskbar: false,
+            titleBarStyle: TitleBarStyle.normal,
+          ),
+          () async {
+            await windowManager.show();
+            await windowManager.focus();
+          },
+        )
+        .timeout(
+          const Duration(seconds: 3),
+          onTimeout: () {
+            startupLog.warning(
+              "Window manager ready-to-show timed out; continuing",
+            );
+          },
+        );
   }
 
   initializePackageVersion();
@@ -115,7 +135,19 @@ void main() async {
   // Await so the plugin is ready before TransactionsService listeners can
   // fire (FlowState.initState wires _synchronizePlannedNotifications), which
   // otherwise hits NotificationsService.pluginInstance before it's set.
-  await initializeNotifications();
+  //
+  // On macOS, UNUserNotificationCenter permission prompts can hang forever
+  // if the app never reached the foreground (`open` returning 1). Do not
+  // block the first Flutter frame on that.
+  try {
+    await initializeNotifications().timeout(const Duration(seconds: 3));
+  } on TimeoutException {
+    startupLog.warning(
+      "Notifications initialization timed out; showing UI anyway",
+    );
+  } catch (e, stackTrace) {
+    startupLog.severe("Failed to initialize notifications", e, stackTrace);
+  }
 
   startupLog.fine("Clearing stale transactions from trash bin");
   unawaited(
@@ -128,15 +160,6 @@ void main() async {
   ExchangeRatesService().init();
 
   CurrencyRegistryService();
-
-  if (Platform.isIOS) {
-    startupLog.fine("Initializing TipService");
-    unawaited(
-      TipService().init().catchError((error) {
-        startupLog.warning("Failed to initialize TipService", error);
-      }),
-    );
-  }
 
   try {
     startupLog.fine("Initializing user preferences service");
@@ -314,7 +337,6 @@ class FlowState extends State<Flow> {
           GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         FlowLocalizations.delegate,
-        FlutterQuillLocalizations.delegate,
       ],
       supportedLocales: FlowLocalizations.supportedLocales,
       locale: _locale,
@@ -443,6 +465,14 @@ class FlowState extends State<Flow> {
       overriddenLocale.countryCode,
     );
 
+    if (!FlowLocalizations.supportedLocales.contains(_locale)) {
+      _locale =
+          FlowLocalizations.supportedLocales
+              .where((locale) => locale.languageCode == _locale.languageCode)
+              .firstOrNull ??
+          FlowLocalizations.supportedLocales[1];
+    }
+
     mainLogger.fine("Setting locale to ${_locale.code}");
 
     final MomentLocalization newMomentLocalization =
@@ -555,31 +585,5 @@ void initializePackageVersion() async {
 }
 
 Future<void> initializeNotifications() async {
-  assert(LocalPreferences().runtimeType == LocalPreferences);
-
   await NotificationsService().initialize();
-
-  unawaited(
-    TransactionsService().synchronizeNotifications().catchError((error) {
-      startupLog.severe("Failed to synchronize notifications", error);
-    }),
-  );
-
-  if (UserPreferencesService().remindDailyAt case Duration requireRemindAt) {
-    startupLog.info(
-      "Scheduling daily reminder notifications at ${requireRemindAt.inMinutes} minutes past midnight",
-    );
-    unawaited(
-      NotificationsService().scheduleDailyReminders(requireRemindAt).catchError(
-        (error) {
-          startupLog.severe(
-            "Failed to schedule daily reminder notifications",
-            error,
-          );
-        },
-      ),
-    );
-  } else {
-    startupLog.fine("No daily reminder set, skipping scheduling");
-  }
 }
