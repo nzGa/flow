@@ -3,7 +3,6 @@ import "dart:math";
 import "package:flow/data/flow_button_type.dart";
 import "package:flow/entity/user_preferences.dart";
 import "package:flow/l10n/named_enum.dart";
-import "package:flow/services/integrations/eny.dart";
 import "package:flow/services/user_preferences.dart";
 import "package:flow/theme/navbar_theme.dart";
 import "package:flow/theme/theme.dart";
@@ -41,30 +40,16 @@ class _NewTransactionButtonState extends State<NewTransactionButton>
     final NavbarTheme navbarTheme = Theme.of(context).extension<NavbarTheme>()!;
 
     return AnimatedBuilder(
-      animation: Listenable.merge([
-        UserPreferencesService().valueNotifier,
-        EnyService().apiKey,
-      ]),
+      animation: UserPreferencesService().valueNotifier,
       builder: (context, _) {
         final UserPreferences userPreferences = UserPreferencesService().value;
-        final bool enyConnected = EnyService().apiKey.value?.isNotEmpty == true;
 
-        final List<FlowButtonType> buttonOrder = switch ((
-          context.isLtr,
-          enyConnected,
-        )) {
-          (true, true) => userPreferences.transactionButtonOrder,
-          (true, false) =>
-            userPreferences.transactionButtonOrder
+        final List<FlowButtonType> buttonOrder =
+            (context.isLtr
+                    ? userPreferences.transactionButtonOrder
+                    : userPreferences.transactionButtonOrder.reversed)
                 .where((type) => type != FlowButtonType.eny)
-                .toList(),
-          (false, true) =>
-            userPreferences.transactionButtonOrder.reversed.toList(),
-          (false, false) =>
-            userPreferences.transactionButtonOrder.reversed
-                .where((type) => type != FlowButtonType.eny)
-                .toList(),
-        };
+                .toList();
 
         return PieMenu(
           theme: context.pieTheme.copyWith(

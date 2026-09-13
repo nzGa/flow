@@ -19,11 +19,9 @@ class NoTransactions extends StatelessWidget {
         style: context.textTheme.headlineSmall,
       ),
       icon: FlowIconData.icon(Symbols.family_star_rounded),
-      subtitle: Text(
-        isFilterModified
-            ? "tabs.home.noTransactions.tryChangingFilters".t(context)
-            : "tabs.home.noTransactions.addSome".t(context),
-      ),
+      subtitle: isFilterModified
+          ? Text("tabs.home.noTransactions.tryChangingFilters".t(context))
+          : null,
     );
   }
 }

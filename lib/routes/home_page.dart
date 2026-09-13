@@ -82,16 +82,6 @@ class HomePageState extends State<HomePage>
       if (LocalPreferences().completedInitialSetup.get()) return;
 
       context.pushReplacement("/setup");
-
-      unawaited(
-        LocalPreferences().completedInitialSetup.set(true).catchError((error) {
-          log(
-            "Failed to set LocalPreferences().completedInitialSetup -> true",
-            error: error,
-          );
-          return false;
-        }),
-      );
     });
 
     if (!HomePage.initialized) {
@@ -228,13 +218,12 @@ class HomePageState extends State<HomePage>
       return;
     }
 
+    type ??= FlowButtonType.expense;
     if (type == FlowButtonType.eny) {
-      context.push("/integrations/eny");
-    } else {
-      type ??= FlowButtonType.expense;
-
-      context.push("/transaction/new?type=${type.value}");
+      type = FlowButtonType.expense;
     }
+
+    context.push("/transaction/new?type=${type.value}");
   }
 
   void _pushNotificationPath(NotificationResponse response) {

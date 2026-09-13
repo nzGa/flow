@@ -71,12 +71,6 @@ class ActionableNotificationsService {
       return;
     }
 
-    await tryAddBudgetAlert();
-
-    if (_notifications.value.isNotEmpty) {
-      return;
-    }
-
     if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
       try {
         final DateTime? lastRateAppShowedAt = TransitiveLocalPreferences()

@@ -1,6 +1,7 @@
 import "package:flow/data/flow_icon.dart";
 import "package:flow/entity/account.dart";
 import "package:flow/l10n/extensions.dart";
+import "package:flow/objectbox.dart";
 import "package:material_symbols_icons_flow/symbols.dart";
 
 List<Account> getAccountPresets(String currency) {
@@ -25,4 +26,16 @@ List<Account> getAccountPresets(String currency) {
       uuid: "c04e1cdd-842f-48c1-9c6c-d07fb2b09193",
     ),
   ];
+}
+
+/// Creates a single primary account when none exist yet, so onboarding can
+/// skip the account-picker step.
+Future<void> ensureDefaultAccount(String currency) async {
+  final box = ObjectBox().box<Account>();
+  if (box.count(limit: 1) > 0) return;
+
+  final Account account = getAccountPresets(currency).first;
+  account.id = 0;
+  account.sortOrder = 0;
+  await box.putAsync(account);
 }

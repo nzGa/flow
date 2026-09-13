@@ -27,7 +27,15 @@ class _TransactionEntryFlowPreferencesPageState
   void initState() {
     super.initState();
 
-    _actions = List.from(UserPreferencesService().transactionEntryFlow.actions);
+    _actions = List.from(
+      UserPreferencesService().transactionEntryFlow.actions.where(
+        (action) =>
+            action != TransactionEntryAction.attachFiles &&
+            action != TransactionEntryAction.selectTags &&
+            action != TransactionEntryAction.selectAccount &&
+            action != TransactionEntryAction.selectPrimaryAccount,
+      ),
+    );
     _abandonUponActionCancelled = UserPreferencesService()
         .transactionEntryFlow
         .abandonUponActionCancelled;
@@ -140,7 +148,15 @@ class _TransactionEntryFlowPreferencesPageState
               Column(
                 mainAxisSize: .min,
                 children: TransactionEntryAction.values
-                    .where((action) => !_actions.contains(action))
+                    .where(
+                      (action) =>
+                          action != TransactionEntryAction.attachFiles &&
+                          action != TransactionEntryAction.selectTags &&
+                          action != TransactionEntryAction.selectAccount &&
+                          action !=
+                              TransactionEntryAction.selectPrimaryAccount &&
+                          !_actions.contains(action),
+                    )
                     .map((action) {
                       return ListTile(
                         trailing: const Icon(Symbols.add_rounded),

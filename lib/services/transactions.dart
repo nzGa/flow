@@ -1,11 +1,7 @@
-import "package:flow/data/flow_notification_payload.dart";
 import "package:flow/data/transaction_filter.dart";
 import "package:flow/entity/transaction.dart";
 import "package:flow/objectbox.dart";
 import "package:flow/objectbox/objectbox.g.dart";
-import "package:flow/prefs/local_preferences.dart";
-import "package:flow/prefs/pending_transactions.dart";
-import "package:flow/services/notifications.dart";
 import "package:flow/services/user_preferences.dart";
 import "package:logging/logging.dart";
 import "package:moment_dart/moment_dart.dart";
@@ -435,40 +431,7 @@ class TransactionsService {
     _log.fine("Deleted $deletedCount stale trash bin entries");
   }
 
-  Future<void> synchronizeNotifications() async {
-    final Query<Transaction> qb = pendingTransactionsQb().build();
-    final List<Transaction> pendingTransactions = qb.find();
-    qb.close();
-
-    await NotificationsService().clearByType(
-      FlowNotificationPayloadItemType.transaction,
-    );
-
-    final Duration earlyReminder = Duration(
-      seconds:
-          PendingTransactionsLocalPreferences().earlyReminderInSeconds.get() ??
-          0,
-    );
-
-    await Future.wait(
-      pendingTransactions.map(
-        (transaction) => NotificationsService()
-            .scheduleForPlannedTransaction(transaction, earlyReminder)
-            .catchError((error) {
-              _log.severe(
-                "Failed to schedule exact reminder for transaction ${transaction.uuid}",
-                error,
-              );
-            }),
-      ),
-    ).catchError((error) {
-      _log.warning(
-        "Scheduling for one or more transactions have been failed",
-        error,
-      );
-      return [];
-    });
-  }
+  Future<void> synchronizeNotifications() async {}
 
   /// Has no effect if it's already paused
   void pauseListeners() {

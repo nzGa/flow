@@ -966,5 +966,9 @@
   "transactions.query.filter.transactionType": "Typ",
   "transactions.query.noResult": "Brak transakcji do wyświetlenia",
   "transactions.query.noResult.description": "Spróbuj zaktualizować filtry",
-  "visitGitHubRepo": "Odwiedź repozytorium GitHub"
+  "visitGitHubRepo": "Odwiedź repozytorium GitHub",
+  "tabs.profile.legal": "License",
+  "tabs.profile.license": "GNU GPL v3",
+  "tabs.profile.originalProject": "Original Flow project",
+  "tabs.profile.license.description": "This is a modified version of Flow (September 2026). It is free software under the GNU General Public License version 3. Original copyright: Batmend Ganbaatar and authors of Flow. The original authors are not responsible for this modified version. See LICENSE and NOTICE in the source repository."
 }

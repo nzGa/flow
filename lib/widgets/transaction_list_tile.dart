@@ -1,4 +1,3 @@
-import "package:flow/constants.dart";
 import "package:flow/data/flow_icon.dart";
 import "package:flow/data/money.dart";
 import "package:flow/data/transaction_filter.dart";
@@ -136,14 +135,6 @@ class TransactionListTile extends StatelessWidget {
                   child: Padding(
                     padding: .only(right: 4.0),
                     child: Image.asset("assets/images/siri.png", height: 12.0),
-                  ),
-                  alignment: .middle,
-                ),
-              if (externalProviderName == "Eny")
-                WidgetSpan(
-                  child: Padding(
-                    padding: .only(right: 4.0),
-                    child: Image.network(enyLogoUrl, height: 12.0),
                   ),
                   alignment: .middle,
                 ),

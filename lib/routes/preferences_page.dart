@@ -1,21 +1,16 @@
 import "dart:io";
 
-import "package:flow/constants.dart";
 import "package:flow/l10n/flow_localizations.dart";
 import "package:flow/prefs/local_preferences.dart";
 import "package:flow/routes/preferences/language_selection_sheet.dart";
 import "package:flow/routes/preferences/sections/haptics.dart";
 import "package:flow/routes/preferences/sections/lock_app.dart";
 import "package:flow/routes/preferences/sections/privacy.dart";
-import "package:flow/services/file_attachment.dart";
 import "package:flow/services/local_auth.dart";
-import "package:flow/services/notifications.dart";
 import "package:flow/services/user_preferences.dart";
 import "package:flow/theme/color_themes/registry.dart";
 import "package:flow/theme/flow_color_scheme.dart";
 import "package:flow/theme/names.dart";
-import "package:flow/utils/extensions.dart";
-import "package:flow/widgets/animated_eny_logo.dart";
 import "package:flow/widgets/general/directional_chevron.dart";
 import "package:flow/widgets/general/list_header.dart";
 import "package:flow/widgets/sheets/select_currency_sheet.dart";
@@ -67,10 +62,6 @@ class PreferencesPageState extends State<PreferencesPage> {
       UserPreferencesService().themeName,
     );
 
-    final bool enableGeo = LocalPreferences().enableGeo.get();
-    final bool autoAttachTransactionGeo = LocalPreferences()
-        .autoAttachTransactionGeo
-        .get();
     final bool pendingTransactionsRequireConfrimation = LocalPreferences()
         .pendingTransactions
         .requireConfrimation
@@ -90,13 +81,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               onTap: () => _pushAndRefreshAfter("/preferences/sync"),
               trailing: const LeChevron(),
             ),
-            if (flowDebugMode || NotificationsService.schedulingSupported)
-              ListTile(
-                title: Text("preferences.reminders".t(context)),
-                leading: const Icon(Symbols.notifications_rounded),
-                onTap: () => _pushAndRefreshAfter("/preferences/reminders"),
-                trailing: const LeChevron(),
-              ),
             ListTile(
               title: Text("preferences.language".t(context)),
               leading: const Icon(Symbols.language_rounded),
@@ -136,20 +120,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               trailing: const LeChevron(),
             ),
             const SizedBox(height: 24.0),
-            ListHeader("preferences.integrations".t(context)),
-            const SizedBox(height: 8.0),
-            ListTile(
-              title: Text("Eny"),
-              leading: const SizedBox(
-                width: 24.0,
-                height: 24.0,
-                child: AnimatedEnyLogo(),
-              ),
-              onTap: () =>
-                  _pushAndRefreshAfter("/preferences/integrations/eny"),
-              trailing: const LeChevron(),
-            ),
-            const SizedBox(height: 24.0),
             ListHeader("preferences.transactions".t(context)),
             const SizedBox(height: 8.0),
             ListTile(
@@ -162,23 +132,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               leading: const Icon(Symbols.search_activity_rounded),
               onTap: () =>
                   _pushAndRefreshAfter("/preferences/pendingTransactions"),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
-              title: Text("preferences.transactions.geo".t(context)),
-              leading: const Icon(Symbols.location_pin_rounded),
-              onTap: () => _pushAndRefreshAfter("/preferences/transactionGeo"),
-              subtitle: Text(
-                enableGeo
-                    ? (autoAttachTransactionGeo
-                          ? "preferences.transactions.geo.auto.enabled".t(
-                              context,
-                            )
-                          : "general.enabled".t(context))
-                    : "general.disabled".t(context),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
               trailing: const LeChevron(),
             ),
             ListTile(
@@ -251,12 +204,6 @@ class PreferencesPageState extends State<PreferencesPage> {
             const SizedBox(height: 24.0),
             ListHeader("preferences.feedback".t(context)),
             const SizedBox(height: 8.0),
-            ListTile(
-              title: Text("fileAttachment.cleanupHangingFiles".t(context)),
-              leading: const Icon(Symbols.bug_report_rounded),
-              onTap: () => _deleteHangingFiles(),
-              trailing: const LeChevron(),
-            ),
             ListTile(
               title: Text("preferences.feedback.debugLogs".t(context)),
               leading: const Icon(Symbols.bug_report_rounded),
@@ -364,32 +311,6 @@ class PreferencesPageState extends State<PreferencesPage> {
 
     // Rebuild to update description text
     if (mounted) setState(() {});
-  }
-
-  void _deleteHangingFiles() async {
-    final bool? confirmation = await context.showConfirmationSheet(
-      isDeletionConfirmation: true,
-      title: "fileAttachment.cleanupHangingFiles".t(context),
-      child: Text("fileAttachment.cleanupHangingFiles.description".t(context)),
-    );
-
-    if (confirmation != true || !mounted) return;
-
-    try {
-      final int deleted = await FileAttachmentService().deleteAllOrphans();
-
-      if (mounted) {
-        context.showToast(text: "fileAttachment.delete.success".t(context));
-      }
-
-      _log.info("Deleted $deleted hanging files");
-    } catch (e, stackTrace) {
-      _log.warning("Failed to delete hanging files", e, stackTrace);
-
-      if (mounted) {
-        context.showErrorToast(error: "error.sync.fileNotFound".t(context));
-      }
-    }
   }
 
   void reload() {

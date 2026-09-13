@@ -1,6 +1,5 @@
 import "dart:io";
 
-import "package:flow/constants.dart";
 import "package:flow/data/flow_icon.dart";
 import "package:flow/data/string_multi_filter.dart";
 import "package:flow/data/transaction_filter.dart";
@@ -24,18 +23,12 @@ import "package:flow/widgets/general/flow_icon.dart";
 import "package:flow/widgets/general/form_close_button.dart";
 import "package:flow/widgets/general/frame.dart";
 import "package:flow/widgets/general/info_text.dart";
-import "package:flow/widgets/location_picker_sheet.dart";
-import "package:flow/widgets/open_street_map.dart";
 import "package:flow/widgets/select_color_scheme_list_tile.dart";
 import "package:flow/widgets/sheets/select_contact_sheet.dart";
 import "package:flow/widgets/sheets/select_flow_icon_sheet.dart";
 import "package:flutter/material.dart";
-import "package:flutter/scheduler.dart";
 import "package:flutter_contacts/flutter_contacts.dart" hide PermissionStatus;
-import "package:flutter_map/flutter_map.dart";
-import "package:geolocator/geolocator.dart";
 import "package:go_router/go_router.dart";
-import "package:latlong2/latlong.dart";
 import "package:material_symbols_icons_flow/symbols.dart";
 import "package:permission_handler/permission_handler.dart";
 
@@ -62,16 +55,12 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
 
   TransactionTagPayload? _payload;
 
-  bool _locationBusy = false;
-
   String? _colorSchemeName;
 
   FlowIconData? _iconData;
 
   String get iconCodeOrError =>
       _iconData?.toString() ?? FlowIconData.icon(_type.icon).toString();
-
-  final MapController _mapController = MapController();
 
   @override
   void initState() {
@@ -87,34 +76,18 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
       _payload = _currentlyEditing?.parsedPayload;
       _colorSchemeName = _currentlyEditing?.colorSchemeName;
       _iconData = _currentlyEditing?.icon;
-
-      if (_type == TransactionTagType.location && _payload?.location != null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _mapController.move(
-            _payload!.location!.latLng,
-            _mapController.camera.zoom,
-          );
-        });
-      }
     }
   }
 
   @override
   void dispose() {
     _titleController.dispose();
-    _mapController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     const EdgeInsets contentPadding = EdgeInsets.symmetric(horizontal: 16.0);
-
-    final LatLng center =
-        (_type == TransactionTagType.location
-            ? _payload?.location?.latLng
-            : sukhbaatarSquareCenter) ??
-        sukhbaatarSquareCenter;
 
     return Scaffold(
       appBar: AppBar(
@@ -153,6 +126,11 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
                       spacing: 12.0,
                       mainAxisSize: MainAxisSize.min,
                       children: TransactionTagType.values
+                          .where(
+                            (type) =>
+                                type != TransactionTagType.location ||
+                                _type == type,
+                          )
                           .map(
                             (type) => FilterChip(
                               avatar: Icon(type.icon),
@@ -190,41 +168,6 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
                   ),
                 ),
                 const SizedBox(height: 24.0),
-                if (_type == TransactionTagType.location)
-                  Frame(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ClipRRect(
-                          borderRadius: .circular(8.0),
-                          child: AspectRatio(
-                            aspectRatio: 1.0,
-                            child: OpenStreetMap(
-                              mapController: _mapController,
-                              interactable: false,
-                              onTap: (_) => selectLocation(center),
-                              center: center,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        InfoText(
-                          child: Text("transaction.location.edit".t(context)),
-                        ),
-                      ],
-                    ),
-                  ),
-                if ((Platform.isIOS || Platform.isAndroid) &&
-                    _type == TransactionTagType.location)
-                  ListTile(
-                    enabled: !_locationBusy,
-                    leading: const Icon(Symbols.my_location_rounded),
-                    onTap: _useMyLocation,
-                    title: Text(
-                      "transaction.tags.location.useCurrent".t(context),
-                    ),
-                    trailing: const LeChevron(),
-                  ),
                 if ((Platform.isAndroid || Platform.isIOS) &&
                     _type == TransactionTagType.contact) ...[
                   ListTile(
@@ -278,7 +221,7 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
   }
 
   void _updateType(TransactionTagType newType) {
-    if (newType == _type) return;
+    if (newType == _type || newType == TransactionTagType.location) return;
 
     if (_iconData == null ||
         FlowIconData.icon(_type.icon).toString() == _iconData.toString()) {
@@ -287,57 +230,6 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
     _type = newType;
 
     setState(() {});
-  }
-
-  void _updatePayloadLocation(LatLng point) {
-    _payload = (_payload ?? const TransactionTagPayload()).copyWith(
-      location: TransactionTagLocationPayload(point.latitude, point.longitude),
-    );
-    if (mounted) setState(() {});
-  }
-
-  void _useMyLocation() async {
-    if (_locationBusy) return;
-
-    setState(() {
-      _locationBusy = true;
-    });
-
-    try {
-      final PermissionStatus status = await Permission.locationWhenInUse
-          .request();
-
-      switch (status) {
-        case PermissionStatus.limited:
-        case PermissionStatus.granted:
-          break;
-        default:
-          {
-            if (mounted) {
-              context.showErrorToast(
-                error: "preferences.transactions.geo.auto.permissionDenied".t(
-                  context,
-                ),
-              );
-            }
-            return;
-          }
-      }
-
-      try {
-        final position = await Geolocator.getCurrentPosition();
-        final point = LatLng(position.latitude, position.longitude);
-        _mapController.move(point, _mapController.camera.zoom);
-        _updatePayloadLocation(point);
-      } catch (e) {
-        // Ignore
-      }
-    } finally {
-      _locationBusy = false;
-      if (mounted) {
-        setState(() {});
-      }
-    }
   }
 
   void _selectContact([bool requestPermission = true]) async {
@@ -393,28 +285,6 @@ class _TransactionTagPageState extends State<TransactionTagPage> {
         }
       }
     }
-  }
-
-  void selectLocation(LatLng center) async {
-    final Optional<LatLng>? result =
-        await showModalBottomSheet<Optional<LatLng>>(
-          context: context,
-          builder: (context) => LocationPickerSheet(
-            latitude: center.latitude,
-            longitude: center.longitude,
-          ),
-          isScrollControlled: true,
-        );
-
-    if (result?.value case LatLng newLatLng) {
-      _updatePayloadLocation(newLatLng);
-
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        _mapController.move(newLatLng, _mapController.camera.zoom);
-      });
-    }
-
-    setState(() {});
   }
 
   bool hasChanged() {

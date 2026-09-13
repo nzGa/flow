@@ -27,23 +27,6 @@ Future<File?> pickImportFile({String? dialogTitle}) async {
   return File(result.files.single.path!);
 }
 
-Future<List<XFile>?> pickFiles() async {
-  FilePickerResult? result = await FilePicker.platform.pickFiles(
-    dialogTitle: "fileAttachment.pick".tr(),
-    initialDirectory: await getApplicationDocumentsDirectory()
-        .then<String?>((value) => value.path)
-        .catchError((_) => null),
-    type: FileType.any,
-    allowMultiple: true,
-  );
-
-  if (result == null) {
-    return null;
-  }
-
-  return result.files.map((platformFile) => platformFile.xFile).toList();
-}
-
 Future<XFile?> pickImage({
   ImageSource source = ImageSource.gallery,
   double? maxWidth,
@@ -58,22 +41,6 @@ Future<XFile?> pickImage({
   );
 
   return xfile;
-}
-
-Future<List<XFile>?> pickMultipleMediaFiles({
-  double? maxWidth,
-  double? maxHeight,
-  int? limit,
-}) async {
-  final xFiles = await ImagePicker().pickMultipleMedia(
-    maxHeight: maxHeight,
-    maxWidth: maxWidth,
-    requestFullMetadata: false,
-    imageQuality: 99,
-    limit: limit,
-  );
-
-  return xFiles;
 }
 
 Future<ui.Image?> pickAndCropSquareImage(
