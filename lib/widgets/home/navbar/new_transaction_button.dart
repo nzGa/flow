@@ -48,7 +48,11 @@ class _NewTransactionButtonState extends State<NewTransactionButton>
             (context.isLtr
                     ? userPreferences.transactionButtonOrder
                     : userPreferences.transactionButtonOrder.reversed)
-                .where((type) => type != FlowButtonType.eny)
+                .where(
+                  (type) =>
+                      type != FlowButtonType.eny &&
+                      type != FlowButtonType.transfer,
+                )
                 .toList();
 
         return PieMenu(

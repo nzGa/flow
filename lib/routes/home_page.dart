@@ -219,7 +219,7 @@ class HomePageState extends State<HomePage>
     }
 
     type ??= FlowButtonType.expense;
-    if (type == FlowButtonType.eny) {
+    if (type == FlowButtonType.eny || type == FlowButtonType.transfer) {
       type = FlowButtonType.expense;
     }
 
