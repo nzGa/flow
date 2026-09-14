@@ -1,6 +1,6 @@
 # Contributing
 
-This is a **personal** modified copy of Flow. It is not the upstream project
+This is **simpleFlow**, a personal modified copy of Flow. It is not the upstream project
 ([flow-mn/flow](https://github.com/flow-mn/flow)), and it is not looking for
 feature requests, issues, or translators.
 

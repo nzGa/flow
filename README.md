@@ -1,4 +1,4 @@
-# ![Flow logo](logo@32.png) Flow (modified)
+# ![Flow logo](logo@32.png) simpleFlow
 
 A simple personal finance tracker. This repository is a **modified version** of
 [Flow](https://github.com/flow-mn/flow) (September 2026). It remains free
@@ -8,7 +8,7 @@ Original copyright: Copyright (C) 2024 Batmend Ganbaatar and authors of Flow.
 See [NOTICE](./NOTICE) for attribution and a summary of what changed.
 
 This is a personal project. The original authors are not responsible for it,
-and it is not the Flow app listed on the App Store or Google Play.
+and it is not the original Flow app listed on the App Store or Google Play.
 
 ## What this version is
 
@@ -85,7 +85,7 @@ Pass a stringified JSON object as the `json` query param.
 ## Development
 
 This is a personal fork. See [CONTRIBUTING.md](./CONTRIBUTING.md) if you still
-want to open a pull request, and [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
+want to open a pull request.
 
 ### Prerequisites
 
