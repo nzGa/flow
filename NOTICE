@@ -8,8 +8,8 @@ This modified version was created in September 2026. It remains free
 software under the GNU General Public License version 3 (see LICENSE).
 
 Changes from the original include removal of Eny integrations, community
-and in-app support pages, geographic tagging and spending maps,
-transaction file attachments / camera / Markdown notes, transaction
-tags from the UI, and scheduled operating-system notifications.
+and in-app support pages, IAP, geographic tagging and spending maps,
+transaction file attachments / camera / Markdown notes, tags and budgets
+from the UI, and scheduled operating-system notifications.
 
 The original authors are not responsible for this modified version.

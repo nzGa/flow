@@ -1,5 +1,8 @@
-
 # Contributor Covenant Code of Conduct
+
+This is a personal repository. There is no community to join; this policy
+applies to GitHub issues, pull requests, and other interaction around this
+code.
 
 ## Our Pledge
 
@@ -60,7 +63,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at <batmend@gege.mn>.
+reported to the maintainer through GitHub (@nzGa).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
