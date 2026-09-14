@@ -50,7 +50,18 @@ void main() {
       ),
       isTrue,
     );
-    expect(sample.transactions.any((t) => t.amount > 0), isTrue);
     expect(sample.transactions.any((t) => t.amount < 0), isTrue);
+
+    const transferOrOpening = {
+      "Saldo inicial",
+      "Extracción efectivo",
+      "Extracción cajero",
+      "Ahorro mensual",
+    };
+    final incomes = sample.transactions.where(
+      (t) => t.amount > 0 && !transferOrOpening.contains(t.title),
+    );
+    expect(incomes.length, greaterThanOrEqualTo(30));
+    expect(incomes.any((t) => t.title == "Sueldo"), isTrue);
   });
 }
