@@ -16,7 +16,7 @@
   <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
   <application
-    android:label="Flow"
+    android:label="simpleFlow"
     android:icon="@mipmap/ic_launcher"
     android:supportsRtl="true">
     <activity

@@ -241,7 +241,7 @@ Future<Uint8List> generatePDFContent({
   final pw.Document pdf = pw.Document(
     theme: pw.ThemeData(defaultTextStyle: defaultTextStyle),
     // TODO @sadespresso add l10n support
-    title: "Flow - Transactions statement (${options.timeRange})",
+    title: "simpleFlow - Transactions statement (${options.timeRange})",
     author: author,
     keywords: "Flow, statement, personal, non-legal",
   );
