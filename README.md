@@ -1,36 +1,41 @@
 # ![Flow logo](logo@32.png) simpleFlow
 
-A simple personal finance tracker. This repository is a **modified version** of
+Personal, offline-first expense tracker. This is a **modified version** of
 [Flow](https://github.com/flow-mn/flow) (September 2026). It remains free
 software under the [GNU General Public License v3](./LICENSE).
 
 Original copyright: Copyright (C) 2024 Batmend Ganbaatar and authors of Flow.
 See [NOTICE](./NOTICE) for attribution and a summary of what changed.
 
-This is a personal project. The original authors are not responsible for it,
-and it is not the original Flow app listed on the App Store or Google Play.
+This is not the Flow app on the App Store or Google Play. The original authors
+are not responsible for this project.
 
-## What this version is
+**Repository:** [github.com/nzGa/simpleFlow](https://github.com/nzGa/simpleFlow)
 
-Offline-first expense tracking: accounts, transactions, categories, and stats.
-Build and run from source (macOS and Linux work; Windows is untested).
+## What it is
 
-Compared with upstream Flow, this version drops Eny, in-app support/community
+Accounts, transactions, categories, and spending stats. Build from source
+(macOS and Linux work; Windows is untested). Web is not supported (ObjectBox).
+
+Compared with upstream Flow, simpleFlow drops Eny, in-app support/community
 and IAP, maps and geo tagging, attachments / camera / Markdown notes, tags and
-budgets from the UI, OS scheduled notifications, and store-publish workflows.
-Existing backup data for those features is still imported.
+budgets from the UI, OS scheduled notifications, store-publish workflows, and
+the in-app trash and money-format preferences. Amounts are always shown in
+full with ISO codes (`ARS`, `BRL`, `EUR`, `USD`), never abbreviated and never
+as `$` / `€`. Existing backup data for removed features is still imported.
 
 ## Features
 
-* Simple UX for day-to-day tracking
-* Multiple accounts and currencies (including various cryptos)
+* Day-to-day tracking with a simple UI
+* Accounts in ARS, BRL, EUR, or USD
 * Categories and spending stats
 * Fully offline[^1]
-* Your data stays on device
+* Data stays on device
   * No trackers, no analytics
   * Recoverable backups (ZIP/JSON)
   * Export CSV and PDFs
   * Periodic auto-backups to iCloud (Apple platforms)
+* UI languages: English, Spanish, Portuguese (Brazil)[^2]
 * [URI-based automation](#uri-based-automation)
 
 ## URI-based automation
@@ -84,8 +89,8 @@ Pass a stringified JSON object as the `json` query param.
 
 ## Development
 
-This is a personal fork. See [CONTRIBUTING.md](./CONTRIBUTING.md) if you still
-want to open a pull request.
+Personal project. See [CONTRIBUTING.md](./CONTRIBUTING.md) if you still want
+to open a pull request.
 
 ### Prerequisites
 
@@ -98,15 +103,13 @@ Desktop builds need the same native deps as Flutter. See
 
 ### Testing
 
-Install ObjectBox dynamic libraries first[^2]:
+Install ObjectBox dynamic libraries first[^3]:
 
 ```sh
 bash <(curl -s https://raw.githubusercontent.com/objectbox/objectbox-dart/main/install.sh)
 ```
 
 Then: `flutter test`
-
-Web is not supported (ObjectBox).
 
 ## Original Flow
 
@@ -116,25 +119,12 @@ To support the original maintainer:
 
 Thanks to everyone who contributed translations, testing, and code to Flow.
 
-## Languages
-
-Translations come from upstream:
-
-* Arabic — [Ultrate](https://github.com/Ultrate)
-* English
-* French (France)
-* German (Germany) — [MarkusWangler](https://github.com/MarkusWangler)
-* Italian (Italy) — [albertorizzi](https://github.com/albertorizzi)
-* Mongolian (Mongolia)
-* Russian (Russia)
-* Spanish (Spain)
-* Turkish (Türkiye) — [NoRiskNoViski](https://github.com/NoRiskNoViski)
-* Ukrainian (Ukraine)
-* Czech (Czechia) — Miloš Koliáš
-
 [^1]: Internet is only needed to download exchange rates when you use more
 than one currency.
 
-[^2]: Confirm the current install steps at
+[^2]: Portuguese uses English app strings until a full translation exists.
+Material widgets can still follow the system Portuguese locale.
+
+[^3]: Confirm the current install steps at
 <https://docs.objectbox.io/getting-started#add-objectbox-to-your-project>
 (choose Flutter).

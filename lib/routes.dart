@@ -29,7 +29,6 @@ import "package:flow/routes/import_wizard/v1.dart";
 import "package:flow/routes/import_wizard/v2.dart";
 import "package:flow/routes/preferences/button_order_preferences_page.dart";
 import "package:flow/routes/preferences/change_preferences_page.dart";
-import "package:flow/routes/preferences/money_formatting_preferences_page.dart";
 import "package:flow/routes/preferences/numpad_preferences_page.dart";
 import "package:flow/routes/preferences/pending_transactions_preferences_page.dart";
 import "package:flow/routes/preferences/sync_preferences_page.dart";
@@ -37,7 +36,6 @@ import "package:flow/routes/preferences/theme_preferences_page.dart";
 import "package:flow/routes/preferences/transaction_entry_flow_preferences_page.dart";
 import "package:flow/routes/preferences/transaction_list_item_appearance_preferences_page.dart";
 import "package:flow/routes/preferences/transfer_preferences_page.dart";
-import "package:flow/routes/preferences/trash_bin_preferences_page.dart";
 import "package:flow/routes/preferences_page.dart";
 import "package:flow/routes/profile_page.dart";
 import "package:flow/routes/setup/setup_accounts_page.dart";
@@ -246,10 +244,6 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const NumpadPreferencesPage(),
         ),
         GoRoute(
-          path: "trashBin",
-          builder: (context, state) => const TrashBinPreferencesPage(),
-        ),
-        GoRoute(
           path: "transfer",
           builder: (context, state) => const TransferPreferencesPage(),
         ),
@@ -269,10 +263,6 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: "changeVisuals",
           builder: (context, state) => const ChangeVisualsPreferencesPage(),
-        ),
-        GoRoute(
-          path: "moneyFormatting",
-          builder: (context, state) => const MoneyFormattingPreferencesPage(),
         ),
         GoRoute(
           path: "sync",

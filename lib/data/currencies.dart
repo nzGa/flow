@@ -58,3 +58,11 @@ class CustomCurrencyData extends CurrencyData {
     required this.rateFor,
   }) : super.crypto();
 }
+
+/// Currencies offered in the app UI (accounts, primary currency, setup).
+const List<CurrencyData> kAppCurrencies = [
+  CurrencyData(country: "ARGENTINA", name: "Argentine Peso", code: "ARS"),
+  CurrencyData(country: "BRAZIL", name: "Brazilian Real", code: "BRL"),
+  CurrencyData(country: "EUROZONE", name: "Euro", code: "EUR"),
+  CurrencyData(country: "UNITED STATES", name: "US Dollar", code: "USD"),
+];
