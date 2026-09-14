@@ -97,4 +97,8 @@ class CSVParsedData {
   static Future<CSVParsedData> fromFile(File file) async {
     return CSVParsedData(await parseCsvFromFile(file));
   }
+
+  static CSVParsedData fromString(String csv) {
+    return CSVParsedData(parseCsvFromString(csv));
+  }
 }

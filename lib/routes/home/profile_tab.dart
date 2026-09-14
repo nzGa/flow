@@ -1,12 +1,19 @@
 import "package:flow/constants.dart";
 import "package:flow/l10n/extensions.dart";
 import "package:flow/prefs/local_preferences.dart";
+import "package:flow/sync/import/sample_csv.dart";
 import "package:flow/theme/theme.dart";
+import "package:flow/utils/extensions/custom_popups.dart";
+import "package:flow/utils/extensions/toast.dart";
 import "package:flow/widgets/general/list_header.dart";
+import "package:flow/widgets/general/spinner.dart";
 import "package:flow/widgets/home/preferences/profile_card.dart";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
+import "package:logging/logging.dart";
 import "package:material_symbols_icons_flow/symbols.dart";
+
+final Logger _log = Logger("ProfileTab");
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -16,6 +23,8 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
+  bool _loadingSampleData = false;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -77,6 +86,11 @@ class _ProfileTabState extends State<ProfileTab> {
             onTap: () => context.push("/import"),
           ),
           ListTile(
+            title: Text("tabs.profile.loadSampleData".t(context)),
+            leading: const Icon(Symbols.science_rounded),
+            onTap: _loadingSampleData ? null : _loadSampleData,
+          ),
+          ListTile(
             title: Text("tabs.profile.preferences".t(context)),
             leading: const Icon(Symbols.settings_rounded),
             onTap: () => context.push("/preferences"),
@@ -90,5 +104,56 @@ class _ProfileTabState extends State<ProfileTab> {
         ],
       ),
     );
+  }
+
+  Future<void> _loadSampleData() async {
+    if (_loadingSampleData) return;
+
+    final bool? confirm = await context.showConfirmationSheet(
+      title: "sync.import.eraseWarning".t(context),
+      isDeletionConfirmation: true,
+      mainActionLabelOverride: "general.confirm".t(context),
+      child: Text(
+        "tabs.profile.loadSampleData.eraseWarning".t(context),
+        style: context.textTheme.bodyMedium?.copyWith(
+          color: context.flowColors.expense,
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+
+    if (confirm != true || !mounted) return;
+
+    setState(() => _loadingSampleData = true);
+    _showLoadingDialog();
+
+    try {
+      await importSampleCsv();
+      if (!mounted) return;
+      _dismissLoadingDialog();
+      context.showToast(text: "sync.import.success".t(context));
+    } catch (e, stackTrace) {
+      _log.severe("Failed to load sample data", e, stackTrace);
+      if (!mounted) return;
+      _dismissLoadingDialog();
+      context.showErrorToast(error: e);
+    } finally {
+      if (mounted) {
+        setState(() => _loadingSampleData = false);
+      }
+    }
+  }
+
+  void _showLoadingDialog() {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) =>
+          const PopScope(canPop: false, child: Center(child: Spinner())),
+    );
+  }
+
+  void _dismissLoadingDialog() {
+    Navigator.of(context, rootNavigator: true).pop();
   }
 }
