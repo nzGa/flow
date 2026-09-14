@@ -320,7 +320,7 @@ class ObjectBox {
   /// * Profile
   /// * BackupEntry
   Future<void> eraseMainData() async {
-    _log.severe("Erasing all data, except for Profile and BackupEntry");
+    _log.info("Erasing all data, except for Profile and BackupEntry");
 
     try {
       await Future.wait([
