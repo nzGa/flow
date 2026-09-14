@@ -33,7 +33,14 @@ class _ProfileTabState extends State<ProfileTab> {
         children: [
           const SizedBox(height: 24.0),
           const Center(child: ProfileCard()),
-          const SizedBox(height: 24.0),
+          const SizedBox(height: 16.0),
+          ListTile(
+            title: Text("tabs.profile.loadSampleData".t(context)),
+            subtitle: Text("tabs.profile.loadSampleData.subtitle".t(context)),
+            leading: const Icon(Symbols.science_rounded),
+            onTap: _loadingSampleData ? null : _loadSampleData,
+          ),
+          const SizedBox(height: 8.0),
           ListTile(
             title: Text("tabs.stats.insights".t(context)),
             leading: const Icon(Symbols.insights_rounded),
@@ -63,11 +70,6 @@ class _ProfileTabState extends State<ProfileTab> {
             leading: const Icon(Symbols.category_rounded),
             onTap: () => context.push("/categories"),
           ),
-          ListTile(
-            title: Text("preferences.transactions.pending".t(context)),
-            leading: const Icon(Symbols.search_activity_rounded),
-            onTap: () => context.push("/transactions/pending"),
-          ),
           const SizedBox(height: 32.0),
           ListHeader("tabs.profile.other".t(context)),
           ListTile(
@@ -84,11 +86,6 @@ class _ProfileTabState extends State<ProfileTab> {
             title: Text("tabs.profile.import".t(context)),
             leading: const Icon(Symbols.restore_page_rounded),
             onTap: () => context.push("/import"),
-          ),
-          ListTile(
-            title: Text("tabs.profile.loadSampleData".t(context)),
-            leading: const Icon(Symbols.science_rounded),
-            onTap: _loadingSampleData ? null : _loadSampleData,
           ),
           ListTile(
             title: Text("tabs.profile.preferences".t(context)),

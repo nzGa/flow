@@ -58,11 +58,6 @@ class PreferencesPageState extends State<PreferencesPage> {
       UserPreferencesService().themeName,
     );
 
-    final bool pendingTransactionsRequireConfrimation = LocalPreferences()
-        .pendingTransactions
-        .requireConfrimation
-        .get();
-
     final String currentPrimaryCurrency =
         UserPreferencesService().primaryCurrency;
 
@@ -107,30 +102,11 @@ class PreferencesPageState extends State<PreferencesPage> {
             ListHeader("preferences.transactions".t(context)),
             const SizedBox(height: 8.0),
             ListTile(
-              title: Text("preferences.transactions.pending".t(context)),
-              subtitle: Text(
-                pendingTransactionsRequireConfrimation
-                    ? "general.enabled".t(context)
-                    : "general.disabled".t(context),
-              ),
-              leading: const Icon(Symbols.search_activity_rounded),
-              onTap: () =>
-                  _pushAndRefreshAfter("/preferences/pendingTransactions"),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
               leading: const Icon(Symbols.list_rounded),
               title: Text("preferences.transactions.listTile".t(context)),
               onTap: () => _pushAndRefreshAfter(
                 "/preferences/transactionListItemAppearance",
               ),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
-              leading: const Icon(Symbols.automation_rounded),
-              title: Text("preferences.transactionEntryFlow".t(context)),
-              onTap: () =>
-                  _pushAndRefreshAfter("/preferences/transactionEntryFlow"),
               trailing: const LeChevron(),
             ),
             const SizedBox(height: 24.0),
@@ -145,12 +121,6 @@ class PreferencesPageState extends State<PreferencesPage> {
                 themeNames[currentTheme.name] ?? currentTheme.name,
               ),
               onTap: _openTheme,
-              trailing: const LeChevron(),
-            ),
-            ListTile(
-              title: Text("preferences.changeVisuals".t(context)),
-              leading: const Icon(Symbols.moving_rounded),
-              onTap: () => _pushAndRefreshAfter("/preferences/changeVisuals"),
               trailing: const LeChevron(),
             ),
             const SizedBox(height: 24.0),

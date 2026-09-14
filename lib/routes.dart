@@ -28,12 +28,9 @@ import "package:flow/routes/import_wizard/ivy.dart";
 import "package:flow/routes/import_wizard/v1.dart";
 import "package:flow/routes/import_wizard/v2.dart";
 import "package:flow/routes/preferences/button_order_preferences_page.dart";
-import "package:flow/routes/preferences/change_preferences_page.dart";
 import "package:flow/routes/preferences/numpad_preferences_page.dart";
-import "package:flow/routes/preferences/pending_transactions_preferences_page.dart";
 import "package:flow/routes/preferences/sync_preferences_page.dart";
 import "package:flow/routes/preferences/theme_preferences_page.dart";
-import "package:flow/routes/preferences/transaction_entry_flow_preferences_page.dart";
 import "package:flow/routes/preferences/transaction_list_item_appearance_preferences_page.dart";
 import "package:flow/routes/preferences/transfer_preferences_page.dart";
 import "package:flow/routes/preferences_page.dart";
@@ -235,11 +232,6 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const PreferencesPage(),
       routes: [
         GoRoute(
-          path: "pendingTransactions",
-          builder: (context, state) =>
-              const PendingTransactionPreferencesPage(),
-        ),
-        GoRoute(
           path: "numpad",
           builder: (context, state) => const NumpadPreferencesPage(),
         ),
@@ -252,17 +244,8 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const ButtonOrderPreferencesPage(),
         ),
         GoRoute(
-          path: "transactionEntryFlow",
-          builder: (context, state) =>
-              const TransactionEntryFlowPreferencesPage(),
-        ),
-        GoRoute(
           path: "theme",
           builder: (context, state) => const ThemePreferencesPage(),
-        ),
-        GoRoute(
-          path: "changeVisuals",
-          builder: (context, state) => const ChangeVisualsPreferencesPage(),
         ),
         GoRoute(
           path: "sync",
