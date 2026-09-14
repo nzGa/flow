@@ -694,6 +694,8 @@
   "tabs.profile.community": "Comunidad",
   "tabs.profile.guide": "Guía de uso",
   "tabs.profile.import": "Importar",
+  "tabs.profile.loadSampleData": "Cargar datos de ejemplo",
+  "tabs.profile.loadSampleData.eraseWarning": "Esto reemplazará todas las cuentas, categorías y transacciones actuales por seis meses de datos de ejemplo.",
   "tabs.profile.other": "Otros",
   "tabs.profile.preferences": "Preferencias",
   "tabs.profile.recommend": "Recomendar Flow",

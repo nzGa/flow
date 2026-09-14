@@ -1,0 +1,569 @@
+flow_title,flow_notes,flow_account_name,flow_amount,flow_date_of_transaction,flow_time_of_transaction_optional,flow_date_of_transaction_iso_8601,flow_category_optional
+Saldo inicial,,Principal,2100000.00,2026-03-14,09:00:00,,
+Saldo inicial,,Efectivo,68500.00,2026-03-14,09:00:00,,
+Saldo inicial,,Ahorros,1800000.00,2026-03-14,09:00:00,,
+Saldo inicial,,Dólares,2400.00,2026-03-14,09:00:00,,
+Ninina,,Principal,-9200.00,2026-03-14,10:36:47,,Bebidas
+Starbucks,,Principal,-8100.00,2026-03-15,11:02:29,,Bebidas
+Jumbo,,Principal,-94308.00,2026-03-16,16:58:28,,Compra
+Panadería,,Efectivo,-8001.00,2026-03-16,16:59:00,,Aperitivos
+Shell,,Principal,-56494.00,2026-03-16,18:00:44,,Gasolina
+Ninina,,Efectivo,-9200.00,2026-03-18,08:56:06,,Bebidas
+Personal móvil,,Principal,-28400.00,2026-03-18,09:45:00,,Suministros
+BA Taxi,,Principal,-16774.00,2026-03-18,13:39:45,,Transporte
+Havanna café,,Principal,-7400.00,2026-03-19,10:22:35,,Bebidas
+Guerrín,,Principal,-52897.00,2026-03-19,12:02:17,,Comer fuera
+SUBE subte,,Principal,-2052.00,2026-03-19,20:35:31,,Transporte
+Extracción efectivo,,Principal,-40000.00,2026-03-20,13:09:50,,
+Extracción efectivo,,Efectivo,40000.00,2026-03-20,13:09:50,,
+Edenor luz,,Principal,-56517.00,2026-03-20,14:10:00,,Suministros
+Starbucks,,Principal,-8100.00,2026-03-21,09:36:02,,Bebidas
+Burger King,,Principal,-29361.00,2026-03-21,19:03:27,,Comer fuera
+Disco,,Principal,-57637.00,2026-03-21,19:52:38,,Compra
+Colectivo,,Efectivo,-1730.00,2026-03-21,23:15:22,,Transporte
+AySA agua,,Principal,-18500.00,2026-03-22,13:00:00,,Suministros
+Jumbo,,Principal,-78658.00,2026-03-22,13:31:58,,Compra
+BA Taxi,,Principal,-9472.00,2026-03-23,07:14:58,,Transporte
+Guerrín,,Efectivo,-26342.00,2026-03-24,15:32:56,,Comer fuera
+Kiosco,,Principal,-4157.00,2026-03-24,16:24:51,,Aperitivos
+Colectivo,,Efectivo,-2043.00,2026-03-24,21:51:36,,Transporte
+Havanna café,,Principal,-7400.00,2026-03-25,08:18:29,,Bebidas
+Sueldo,,Principal,3179904.93,2026-03-25,09:15:00,,Nómina
+Extracción cajero,,Principal,-80000.00,2026-03-25,12:30:00,,
+Extracción cajero,,Efectivo,80000.00,2026-03-25,12:30:00,,
+Ahorro mensual,,Principal,-200000.00,2026-03-25,12:35:00,,
+Ahorro mensual,,Ahorros,200000.00,2026-03-25,12:35:00,,
+Uber,,Principal,-9904.00,2026-03-25,14:42:55,,Transporte
+Siga la Vaca,,Principal,-41224.00,2026-03-25,17:01:32,,Comer fuera
+SUBE subte,,Principal,-1350.00,2026-03-26,09:51:15,,Transporte
+Axion,,Principal,-47347.00,2026-03-26,12:13:04,,Gasolina
+Rappi,,Efectivo,-53461.00,2026-03-26,21:59:43,,Comer fuera
+Starbucks,,Principal,-8100.00,2026-03-27,08:29:24,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-03-27,13:31:04,,
+Extracción efectivo,,Efectivo,40000.00,2026-03-27,13:31:04,,
+Uniqlo,,Principal,-22446.00,2026-03-27,18:14:11,,Compras
+SUBE subte,,Efectivo,-1416.00,2026-03-27,18:40:53,,Transporte
+Rappi,,Principal,-27161.00,2026-03-27,19:09:04,,Comer fuera
+Cuervo café,,Efectivo,-5800.00,2026-03-28,10:43:43,,Bebidas
+Coto,,Principal,-52431.00,2026-03-28,19:36:34,,Compra
+Mostaza,,Efectivo,-43070.00,2026-03-28,20:45:36,,Comer fuera
+Havanna café,,Principal,-7400.00,2026-03-29,11:19:01,,Bebidas
+BA Taxi,,Principal,-17627.00,2026-03-29,16:18:27,,Transporte
+Starbucks,,Efectivo,-8100.00,2026-03-30,11:50:19,,Bebidas
+Día,,Principal,-49156.00,2026-03-30,12:55:08,,Compra
+Uber,,Principal,-16885.00,2026-03-30,15:46:08,,Transporte
+Easy,,Principal,-36362.00,2026-03-30,18:46:33,,Compras
+Starbucks,,Principal,-8100.00,2026-03-31,11:10:38,,Bebidas
+SUBE subte,,Principal,-2372.00,2026-03-31,16:50:23,,Transporte
+Día,,Principal,-68856.00,2026-03-31,17:18:47,,Compra
+Alquiler departamento,"Palermo, CABA",Principal,-850000.00,2026-04-01,08:15:00,,Alquiler
+Starbucks,,Efectivo,-8100.00,2026-04-01,08:17:50,,Bebidas
+Smart Fit,,Principal,-55000.00,2026-04-01,08:20:00,,Fitness
+Coto,,Principal,-57510.00,2026-04-01,13:06:40,,Compra
+Uber,,Principal,-12880.00,2026-04-01,22:03:11,,Transporte
+iCloud+,,Principal,-2499.00,2026-04-02,00:05:12,,Suscripciones online
+Colectivo,,Principal,-2121.00,2026-04-02,07:55:06,,Transporte
+Ninina,,Principal,-9200.00,2026-04-02,11:14:07,,Bebidas
+Havanna café,,Principal,-7400.00,2026-04-03,11:15:18,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-04-03,12:06:29,,
+Extracción efectivo,,Efectivo,40000.00,2026-04-03,12:06:29,,
+Cabify,,Principal,-14698.00,2026-04-03,12:20:03,,Transporte
+Starbucks,,Principal,-8100.00,2026-04-04,10:23:16,,Bebidas
+Libros Gandhi,,Principal,-42923.00,2026-04-04,16:51:52,,Aficiones
+Netflix,,Principal,-12999.00,2026-04-05,00:08:40,,Suscripciones online
+Café Martínez,,Efectivo,-6200.00,2026-04-05,09:52:42,,Bebidas
+Fibertel internet,,Principal,-45000.00,2026-04-06,10:00:00,,Suministros
+Guerrín,,Principal,-19870.00,2026-04-06,12:08:41,,Comer fuera
+BA Taxi,,Efectivo,-9651.00,2026-04-06,19:46:23,,Transporte
+Starbucks,,Principal,-8100.00,2026-04-07,09:06:32,,Bebidas
+Partido River,,Principal,-42000.00,2026-04-07,16:28:11,,Entretenimiento
+Cabify,,Efectivo,-9647.00,2026-04-07,18:24:52,,Transporte
+Café Martínez,,Efectivo,-6200.00,2026-04-08,09:57:06,,Bebidas
+Spotify,,Principal,-7999.00,2026-04-09,00:03:21,,Suscripciones online
+Café Martínez,,Principal,-6200.00,2026-04-09,10:16:04,,Bebidas
+Cabify,,Efectivo,-18400.00,2026-04-09,18:13:49,,Transporte
+Starbucks,,Efectivo,-8100.00,2026-04-10,09:55:00,,Bebidas
+Donación mensual,Cruz Roja Argentina,Principal,-8000.00,2026-04-10,11:30:00,,Donaciones
+Extracción efectivo,,Principal,-40000.00,2026-04-10,12:07:00,,
+Extracción efectivo,,Efectivo,40000.00,2026-04-10,12:07:00,,
+BA Taxi,,Principal,-7600.00,2026-04-10,12:09:54,,Transporte
+OSDE copago,,Principal,-14037.00,2026-04-10,15:06:40,,Salud
+Siga la Vaca,,Efectivo,-29199.00,2026-04-10,15:07:25,,Comer fuera
+Havanna café,,Efectivo,-7400.00,2026-04-11,09:50:01,,Bebidas
+Disco,,Principal,-41424.00,2026-04-11,14:40:36,,Compra
+ChatGPT Plus,,Principal,-24900.00,2026-04-12,00:12:00,,Suscripciones online
+Havanna café,,Efectivo,-7400.00,2026-04-12,10:19:56,,Bebidas
+Heladería Chungo,,Principal,-4581.00,2026-04-12,19:17:21,,Aperitivos
+Café Martínez,,Principal,-6200.00,2026-04-13,10:19:53,,Bebidas
+PedidosYa,,Efectivo,-37699.00,2026-04-13,12:39:37,,Comer fuera
+Uber,,Principal,-13643.00,2026-04-13,13:01:33,,Transporte
+Seguro del auto,,Principal,-86000.00,2026-04-14,10:00:00,,Seguros
+Zara,,Principal,-86341.00,2026-04-14,13:04:32,,Compras
+Cuervo café,,Principal,-5800.00,2026-04-15,09:32:46,,Bebidas
+Freelance USD,Cliente en el exterior,Dólares,387.95,2026-04-15,17:40:00,,Servicios
+Colectivo,,Principal,-1990.00,2026-04-15,19:35:43,,Transporte
+Cuervo café,,Principal,-5800.00,2026-04-16,11:38:55,,Bebidas
+Medialunas,,Principal,-6925.00,2026-04-16,19:30:29,,Aperitivos
+Starbucks,,Principal,-8100.00,2026-04-18,08:08:14,,Bebidas
+Personal móvil,,Principal,-28400.00,2026-04-18,09:45:00,,Suministros
+Disco,,Principal,-79524.00,2026-04-18,12:27:44,,Compra
+Café Martínez,,Principal,-6200.00,2026-04-19,11:16:04,,Bebidas
+Mostaza,,Principal,-20389.00,2026-04-19,16:20:13,,Comer fuera
+Manicura,,Principal,-28238.00,2026-04-19,19:23:33,,Belleza
+Hoyts,,Principal,-15800.00,2026-04-19,20:59:27,,Entretenimiento
+Edenor luz,,Principal,-43844.00,2026-04-20,14:10:00,,Suministros
+Kiosco,,Principal,-5364.00,2026-04-20,19:12:06,,Aperitivos
+Café Martínez,,Principal,-6200.00,2026-04-21,10:23:55,,Bebidas
+BA Taxi,,Principal,-15458.00,2026-04-21,18:00:33,,Transporte
+Partido River,,Principal,-42000.00,2026-04-21,22:13:36,,Entretenimiento
+AySA agua,,Principal,-18500.00,2026-04-22,13:00:00,,Suministros
+Colectivo,,Principal,-1907.00,2026-04-22,14:29:30,,Transporte
+Disco,,Principal,-61125.00,2026-04-22,14:39:56,,Compra
+Café Martínez,,Principal,-6200.00,2026-04-24,10:46:02,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-04-24,12:40:18,,
+Extracción efectivo,,Efectivo,40000.00,2026-04-24,12:40:18,,
+Heladería Chungo,,Principal,-3525.00,2026-04-24,19:51:38,,Aperitivos
+SUBE subte,,Principal,-1525.00,2026-04-24,21:22:55,,Transporte
+Sueldo,,Principal,3182006.72,2026-04-25,09:15:00,,Nómina
+Havanna café,,Efectivo,-7400.00,2026-04-25,11:28:35,,Bebidas
+Extracción cajero,,Principal,-80000.00,2026-04-25,12:30:00,,
+Extracción cajero,,Efectivo,80000.00,2026-04-25,12:30:00,,
+Ahorro mensual,,Principal,-200000.00,2026-04-25,12:35:00,,
+Ahorro mensual,,Ahorros,200000.00,2026-04-25,12:35:00,,
+Disco,,Principal,-43473.00,2026-04-25,16:36:40,,Compra
+Siga la Vaca,,Principal,-35147.00,2026-04-25,20:19:42,,Comer fuera
+Disco,,Principal,-78927.00,2026-04-26,12:30:33,,Compra
+Mostaza,,Principal,-19319.00,2026-04-26,13:56:02,,Comer fuera
+Uniqlo,,Principal,-54269.00,2026-04-26,19:01:46,,Compras
+Havanna café,,Principal,-7400.00,2026-04-27,08:28:38,,Bebidas
+El Club de la Milanesa,,Principal,-48205.00,2026-04-27,13:40:00,,Comer fuera
+Medialunas,,Efectivo,-4158.00,2026-04-27,18:46:45,,Aperitivos
+Ninina,,Efectivo,-9200.00,2026-04-28,11:43:39,,Bebidas
+Manicura,,Principal,-29009.00,2026-04-28,16:52:57,,Belleza
+Café Martínez,,Principal,-6200.00,2026-04-29,08:12:20,,Bebidas
+Café Martínez,,Principal,-6200.00,2026-04-30,11:14:26,,Bebidas
+BA Taxi,,Efectivo,-15912.00,2026-04-30,16:17:11,,Transporte
+Medialunas,,Principal,-10504.00,2026-04-30,16:55:20,,Aperitivos
+Alquiler departamento,"Palermo, CABA",Principal,-850000.00,2026-05-01,08:15:00,,Alquiler
+Smart Fit,,Principal,-55000.00,2026-05-01,08:20:00,,Fitness
+Starbucks,,Principal,-8100.00,2026-05-01,09:38:54,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-05-01,13:28:39,,
+Extracción efectivo,,Efectivo,40000.00,2026-05-01,13:28:39,,
+YPF,,Principal,-48362.00,2026-05-01,14:15:24,,Gasolina
+Colectivo,,Principal,-1332.00,2026-05-01,22:04:18,,Transporte
+iCloud+,,Principal,-2499.00,2026-05-02,00:05:12,,Suscripciones online
+Ninina,,Principal,-9200.00,2026-05-02,09:34:46,,Bebidas
+Partido River,,Principal,-42000.00,2026-05-02,20:17:52,,Entretenimiento
+Café Martínez,,Principal,-6200.00,2026-05-03,08:35:51,,Bebidas
+Jumbo,,Principal,-86293.00,2026-05-03,17:13:30,,Compra
+Shell,,Principal,-50915.00,2026-05-03,17:50:57,,Gasolina
+Lego,,Principal,-12065.00,2026-05-03,19:43:00,,Aficiones
+Recital Niceto,,Principal,-28000.00,2026-05-03,22:02:59,,Entretenimiento
+Panadería,,Efectivo,-11453.00,2026-05-04,17:34:31,,Aperitivos
+Cabify,,Principal,-9243.00,2026-05-04,21:20:54,,Transporte
+Netflix,,Principal,-12999.00,2026-05-05,00:08:40,,Suscripciones online
+Ninina,,Efectivo,-9200.00,2026-05-05,09:50:02,,Bebidas
+Corte de pelo,,Principal,-18649.00,2026-05-05,13:33:19,,Belleza
+Ninina,,Principal,-9200.00,2026-05-06,09:25:15,,Bebidas
+Fibertel internet,,Principal,-45000.00,2026-05-06,10:00:00,,Suministros
+Falabella,,Principal,-79486.00,2026-05-06,19:06:41,,Compras
+Starbucks,,Efectivo,-8100.00,2026-05-07,09:25:03,,Bebidas
+Cabify,,Efectivo,-11393.00,2026-05-07,17:31:16,,Transporte
+Cinemark,,Principal,-14500.00,2026-05-08,16:22:44,,Entretenimiento
+Colectivo,,Principal,-1607.00,2026-05-08,16:37:28,,Transporte
+Guitar Center strings,,Principal,-33072.00,2026-05-08,20:47:47,,Aficiones
+Steam,,Dólares,-14.99,2026-05-08,21:12:00,,Aficiones
+Spotify,,Principal,-7999.00,2026-05-09,00:03:21,,Suscripciones online
+Donación mensual,Cruz Roja Argentina,Principal,-8000.00,2026-05-10,11:30:00,,Donaciones
+Guerrín,,Principal,-34247.00,2026-05-10,14:32:17,,Comer fuera
+Kiosco,,Principal,-3680.00,2026-05-10,17:48:13,,Aperitivos
+Cinemark,,Principal,-14500.00,2026-05-10,18:00:44,,Entretenimiento
+Corte de pelo,,Principal,-15171.00,2026-05-10,19:58:12,,Belleza
+Havanna café,,Efectivo,-7400.00,2026-05-11,08:49:27,,Bebidas
+Pet shop,,Principal,-18206.00,2026-05-11,12:04:18,,Cuidado de mascotas
+ChatGPT Plus,,Principal,-24900.00,2026-05-12,00:12:00,,Suscripciones online
+Cuervo café,,Efectivo,-5800.00,2026-05-12,08:04:38,,Bebidas
+Carrefour,,Principal,-72114.00,2026-05-12,18:18:36,,Compra
+Uber,,Principal,-9844.00,2026-05-12,20:23:46,,Transporte
+Ninina,,Efectivo,-9200.00,2026-05-13,11:08:33,,Bebidas
+Uber,,Principal,-12365.00,2026-05-13,18:07:51,,Transporte
+Café Martínez,,Efectivo,-6200.00,2026-05-14,10:17:31,,Bebidas
+Dr. Ahorro,,Principal,-10243.00,2026-05-14,14:28:46,,Salud
+Ninina,,Efectivo,-9200.00,2026-05-15,10:32:53,,Bebidas
+SUBE subte,,Efectivo,-2145.00,2026-05-15,11:38:47,,Transporte
+Carrefour,,Principal,-63023.00,2026-05-15,14:26:36,,Compra
+Don Julio (barra),,Principal,-36537.00,2026-05-15,17:02:53,,Comer fuera
+Ninina,,Principal,-9200.00,2026-05-16,08:22:38,,Bebidas
+Havanna café,,Principal,-7400.00,2026-05-17,08:05:35,,Bebidas
+BA Taxi,,Efectivo,-14576.00,2026-05-17,13:27:46,,Transporte
+PedidosYa,,Principal,-42124.00,2026-05-17,14:11:18,,Comer fuera
+Panadería,,Principal,-7428.00,2026-05-17,17:46:50,,Aperitivos
+Cuervo café,,Principal,-5800.00,2026-05-18,09:13:58,,Bebidas
+Personal móvil,,Principal,-28400.00,2026-05-18,09:45:00,,Suministros
+Easy,,Principal,-71930.00,2026-05-18,17:59:42,,Compras
+Cabify,,Principal,-8315.00,2026-05-19,08:05:50,,Transporte
+Starbucks,,Principal,-8100.00,2026-05-19,08:50:28,,Bebidas
+Café Martínez,,Efectivo,-6200.00,2026-05-20,10:42:47,,Bebidas
+Edenor luz,,Principal,-57757.00,2026-05-20,14:10:00,,Suministros
+Colectivo,,Efectivo,-1880.00,2026-05-20,15:36:18,,Transporte
+Regalo mamá,Día de la Madre,Principal,-42000.00,2026-05-20,16:59:02,,Regalos
+Axion,,Principal,-44598.00,2026-05-20,18:26:00,,Gasolina
+AySA agua,,Principal,-18500.00,2026-05-22,13:00:00,,Suministros
+BA Taxi,,Principal,-12783.00,2026-05-22,19:46:21,,Transporte
+Havanna café,,Principal,-7400.00,2026-05-23,10:48:26,,Bebidas
+BA Taxi,,Efectivo,-14071.00,2026-05-23,14:00:44,,Transporte
+Coto,,Principal,-44548.00,2026-05-23,18:10:23,,Compra
+Easy,,Principal,-58839.00,2026-05-23,18:19:11,,Compras
+El Club de la Milanesa,,Principal,-19999.00,2026-05-23,19:11:08,,Comer fuera
+Havanna café,,Efectivo,-7400.00,2026-05-24,10:34:12,,Bebidas
+Cuervo café,,Principal,-5800.00,2026-05-25,08:13:59,,Bebidas
+Sueldo,,Principal,3216202.74,2026-05-25,09:15:00,,Nómina
+Extracción cajero,,Principal,-80000.00,2026-05-25,12:30:00,,
+Extracción cajero,,Efectivo,80000.00,2026-05-25,12:30:00,,
+Ahorro mensual,,Principal,-200000.00,2026-05-25,12:35:00,,
+Ahorro mensual,,Ahorros,200000.00,2026-05-25,12:35:00,,
+SUBE subte,,Principal,-1207.00,2026-05-25,16:01:46,,Transporte
+Freelance diseño,,Principal,255756.00,2026-05-25,16:30:59,,Servicios
+El Club de la Milanesa,,Principal,-26913.00,2026-05-26,17:27:41,,Comer fuera
+Disco,,Principal,-66730.00,2026-05-26,18:23:13,,Compra
+BA Taxi,,Principal,-14694.00,2026-05-26,22:51:16,,Transporte
+Cuervo café,,Efectivo,-5800.00,2026-05-27,09:28:54,,Bebidas
+Siga la Vaca,,Efectivo,-17077.00,2026-05-27,13:13:29,,Comer fuera
+Museo MALBA,,Principal,-6000.00,2026-05-27,20:53:07,,Entretenimiento
+Shell,,Principal,-56089.00,2026-05-28,18:30:07,,Gasolina
+Uber,,Principal,-12965.00,2026-05-28,23:37:31,,Transporte
+Uber,,Principal,-14265.00,2026-05-29,07:27:05,,Transporte
+El Club de la Milanesa,,Principal,-19544.00,2026-05-29,18:22:38,,Comer fuera
+Día,,Principal,-57787.00,2026-05-30,14:30:42,,Compra
+Uber,,Principal,-7874.00,2026-05-30,21:17:00,,Transporte
+Corte de pelo,,Principal,-32731.00,2026-05-31,11:02:54,,Belleza
+Steam oferta,,Principal,-8999.00,2026-05-31,21:31:08,,Entretenimiento
+Alquiler departamento,"Palermo, CABA",Principal,-850000.00,2026-06-01,08:15:00,,Alquiler
+Smart Fit,,Principal,-55000.00,2026-06-01,08:20:00,,Fitness
+Veterinaria,,Principal,-20867.00,2026-06-01,12:27:39,,Cuidado de mascotas
+iCloud+,,Principal,-2499.00,2026-06-02,00:05:12,,Suscripciones online
+Uber,,Principal,-12770.00,2026-06-02,13:32:38,,Transporte
+Café Martínez,,Efectivo,-6200.00,2026-06-03,10:06:42,,Bebidas
+PedidosYa,,Efectivo,-43976.00,2026-06-03,20:56:36,,Comer fuera
+Colectivo,,Principal,-1846.00,2026-06-04,13:31:03,,Transporte
+Medialunas,,Principal,-9259.00,2026-06-04,16:15:06,,Aperitivos
+Netflix,,Principal,-12999.00,2026-06-05,00:08:40,,Suscripciones online
+Café Martínez,,Efectivo,-6200.00,2026-06-05,09:41:50,,Bebidas
+Easy,,Principal,-35536.00,2026-06-05,20:30:26,,Compras
+Fibertel internet,,Principal,-45000.00,2026-06-06,10:00:00,,Suministros
+BA Taxi,,Principal,-12443.00,2026-06-06,15:20:36,,Transporte
+Carrefour,,Principal,-77847.00,2026-06-06,17:39:56,,Compra
+Panadería,,Principal,-9816.00,2026-06-06,17:52:50,,Aperitivos
+Cinemark,,Principal,-14500.00,2026-06-06,20:11:46,,Entretenimiento
+El Club de la Milanesa,,Principal,-50618.00,2026-06-07,21:12:32,,Comer fuera
+Havanna café,,Principal,-7400.00,2026-06-08,08:13:31,,Bebidas
+Cabify,,Principal,-12794.00,2026-06-08,16:47:39,,Transporte
+Axion,,Principal,-46152.00,2026-06-08,18:16:51,,Gasolina
+Medialunas,,Principal,-4774.00,2026-06-08,18:28:38,,Aperitivos
+Spotify,,Principal,-7999.00,2026-06-09,00:03:21,,Suscripciones online
+Cuervo café,,Principal,-5800.00,2026-06-09,10:41:58,,Bebidas
+El Club de la Milanesa,,Principal,-43529.00,2026-06-09,20:41:26,,Comer fuera
+Cuervo café,,Principal,-5800.00,2026-06-10,08:53:25,,Bebidas
+Donación mensual,Cruz Roja Argentina,Principal,-8000.00,2026-06-10,11:30:00,,Donaciones
+Medialunas,,Principal,-8592.00,2026-06-10,18:12:47,,Aperitivos
+El Club de la Milanesa,,Principal,-40686.00,2026-06-10,18:53:00,,Comer fuera
+Havanna café,,Principal,-7400.00,2026-06-11,09:56:15,,Bebidas
+Falabella,,Principal,-28255.00,2026-06-11,16:13:01,,Compras
+ChatGPT Plus,,Principal,-24900.00,2026-06-12,00:12:00,,Suscripciones online
+Burger King,,Principal,-19165.00,2026-06-12,13:02:46,,Comer fuera
+Coto,,Principal,-83680.00,2026-06-12,13:20:12,,Compra
+Uber,,Principal,-14903.00,2026-06-12,17:52:02,,Transporte
+Siga la Vaca,,Principal,-38960.00,2026-06-13,12:02:51,,Comer fuera
+Alimento Royal Canin,,Principal,-25834.00,2026-06-13,13:24:40,,Cuidado de mascotas
+Cinemark,,Principal,-14500.00,2026-06-13,15:08:08,,Entretenimiento
+Lego,,Principal,-40498.00,2026-06-13,17:15:07,,Aficiones
+SUBE subte,,Principal,-1426.00,2026-06-13,22:55:43,,Transporte
+Don Julio (barra),,Principal,-32986.00,2026-06-14,15:09:08,,Comer fuera
+BA Taxi,,Principal,-16238.00,2026-06-15,07:25:33,,Transporte
+Farmacia dermocosmética,,Principal,-14515.00,2026-06-15,11:34:33,,Belleza
+Freelance USD,Cliente en el exterior,Dólares,401.84,2026-06-15,17:40:00,,Servicios
+Starbucks,,Principal,-8100.00,2026-06-16,08:20:07,,Bebidas
+Uniqlo,,Principal,-76521.00,2026-06-16,19:59:00,,Compras
+Uber,,Principal,-18419.00,2026-06-16,22:43:54,,Transporte
+Cuervo café,,Principal,-5800.00,2026-06-17,09:00:24,,Bebidas
+Personal móvil,,Principal,-28400.00,2026-06-18,09:45:00,,Suministros
+SUBE subte,,Principal,-2269.00,2026-06-18,13:29:10,,Transporte
+Coto,,Principal,-75146.00,2026-06-18,14:31:34,,Compra
+Extracción efectivo,,Principal,-40000.00,2026-06-19,13:23:14,,
+Extracción efectivo,,Efectivo,40000.00,2026-06-19,13:23:14,,
+Panadería,,Principal,-4623.00,2026-06-19,17:09:35,,Aperitivos
+Mostaza,,Principal,-30579.00,2026-06-19,18:28:59,,Comer fuera
+SUBE subte,,Principal,-1550.00,2026-06-19,19:40:04,,Transporte
+Falabella,,Principal,-85139.00,2026-06-19,20:41:03,,Compras
+Edenor luz,,Principal,-85462.00,2026-06-20,14:10:00,,Suministros
+Veterinaria,,Principal,-19887.00,2026-06-20,16:45:41,,Cuidado de mascotas
+Recital Niceto,,Principal,-28000.00,2026-06-20,20:02:35,,Entretenimiento
+Ninina,,Efectivo,-9200.00,2026-06-21,08:52:25,,Bebidas
+Coto,,Principal,-43040.00,2026-06-21,15:36:08,,Compra
+Havanna café,,Principal,-7400.00,2026-06-22,09:48:08,,Bebidas
+AySA agua,,Principal,-18500.00,2026-06-22,13:00:00,,Suministros
+SUBE subte,,Efectivo,-2074.00,2026-06-22,20:02:58,,Transporte
+Havanna café,,Efectivo,-7400.00,2026-06-23,10:15:45,,Bebidas
+Carrefour,,Principal,-77016.00,2026-06-23,15:41:38,,Compra
+Uber,,Principal,-13668.00,2026-06-23,15:58:01,,Transporte
+Café Martínez,,Efectivo,-6200.00,2026-06-24,09:56:23,,Bebidas
+Veterinaria,,Principal,-47706.00,2026-06-24,15:58:05,,Cuidado de mascotas
+Burger King,,Principal,-44793.00,2026-06-24,22:08:39,,Comer fuera
+Starbucks,,Principal,-8100.00,2026-06-25,08:54:42,,Bebidas
+Sueldo,,Principal,3199002.09,2026-06-25,09:15:00,,Nómina
+Extracción cajero,,Principal,-80000.00,2026-06-25,12:30:00,,
+Extracción cajero,,Efectivo,80000.00,2026-06-25,12:30:00,,
+Ahorro mensual,,Principal,-200000.00,2026-06-25,12:35:00,,
+Ahorro mensual,,Ahorros,200000.00,2026-06-25,12:35:00,,
+Hora extra,,Principal,335161.00,2026-06-25,12:47:49,,Servicios
+Panadería,,Efectivo,-6335.00,2026-06-25,16:46:24,,Aperitivos
+Cuervo café,,Principal,-5800.00,2026-06-26,10:32:06,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-06-26,12:38:27,,
+Extracción efectivo,,Efectivo,40000.00,2026-06-26,12:38:27,,
+SUBE subte,,Principal,-2030.00,2026-06-26,19:52:10,,Transporte
+Mercado Libre,,Principal,-81056.00,2026-06-27,15:24:25,,Compras
+Burger King,,Efectivo,-37847.00,2026-06-27,21:32:42,,Comer fuera
+Disco,,Principal,-45455.00,2026-06-28,12:48:54,,Compra
+Farmacity higiene,,Principal,-19925.00,2026-06-28,14:35:52,,Higiene
+BA Taxi,,Principal,-9067.00,2026-06-29,11:03:46,,Transporte
+Aguinaldo (1er semestre),,Principal,1600000.00,2026-06-30,09:10:00,,Nómina
+Alquiler departamento,"Palermo, CABA",Principal,-850000.00,2026-07-01,08:15:00,,Alquiler
+Smart Fit,,Principal,-55000.00,2026-07-01,08:20:00,,Fitness
+Shell,,Principal,-44087.00,2026-07-01,15:45:54,,Gasolina
+iCloud+,,Principal,-2499.00,2026-07-02,00:05:12,,Suscripciones online
+Starbucks,,Principal,-8100.00,2026-07-02,10:43:02,,Bebidas
+Carrefour,,Principal,-39489.00,2026-07-02,11:17:52,,Compra
+SUBE subte,,Principal,-1227.00,2026-07-02,15:39:51,,Transporte
+Partido River,,Principal,-42000.00,2026-07-02,15:57:01,,Entretenimiento
+Heladería Chungo,,Efectivo,-6589.00,2026-07-02,18:35:50,,Aperitivos
+Mostaza,,Principal,-54523.00,2026-07-02,19:30:51,,Comer fuera
+Cursor Pro,,Dólares,-89.00,2026-07-03,11:05:00,,Suscripciones online
+Extracción efectivo,,Principal,-40000.00,2026-07-03,12:37:38,,
+Extracción efectivo,,Efectivo,40000.00,2026-07-03,12:37:38,,
+Heladería Chungo,,Efectivo,-9359.00,2026-07-03,19:06:35,,Aperitivos
+Coto,,Principal,-39414.00,2026-07-04,12:01:33,,Compra
+Axion,,Principal,-56568.00,2026-07-04,18:44:12,,Gasolina
+El Club de la Milanesa,,Principal,-48605.00,2026-07-04,20:46:40,,Comer fuera
+Netflix,,Principal,-12999.00,2026-07-05,00:08:40,,Suscripciones online
+Disco,,Principal,-92276.00,2026-07-05,14:11:10,,Compra
+Steam oferta,,Principal,-8999.00,2026-07-05,15:14:04,,Entretenimiento
+Havanna café,,Efectivo,-7400.00,2026-07-06,09:53:38,,Bebidas
+Fibertel internet,,Principal,-45000.00,2026-07-06,10:00:00,,Suministros
+SUBE subte,,Efectivo,-2185.00,2026-07-06,10:05:39,,Transporte
+Partido River,,Principal,-42000.00,2026-07-06,17:21:37,,Entretenimiento
+YPF,,Principal,-38367.00,2026-07-06,18:54:08,,Gasolina
+Cuervo café,,Principal,-5800.00,2026-07-07,10:07:16,,Bebidas
+Farmacity higiene,,Principal,-13838.00,2026-07-07,10:51:51,,Higiene
+Día,,Principal,-89529.00,2026-07-07,15:41:33,,Compra
+Café Martínez,,Efectivo,-6200.00,2026-07-08,10:25:31,,Bebidas
+Uber,,Principal,-8384.00,2026-07-08,16:01:34,,Transporte
+Disco,,Principal,-90751.00,2026-07-08,17:17:39,,Compra
+Spotify,,Principal,-7999.00,2026-07-09,00:03:21,,Suscripciones online
+Ninina,,Principal,-9200.00,2026-07-09,08:22:57,,Bebidas
+Disco,,Principal,-81059.00,2026-07-10,11:23:30,,Compra
+Donación mensual,Cruz Roja Argentina,Principal,-8000.00,2026-07-10,11:30:00,,Donaciones
+Starbucks,,Principal,-8100.00,2026-07-10,11:37:01,,Bebidas
+SUBE subte,,Principal,-1895.00,2026-07-11,14:56:05,,Transporte
+ChatGPT Plus,,Principal,-24900.00,2026-07-12,00:12:00,,Suscripciones online
+Starbucks,,Efectivo,-8100.00,2026-07-12,08:23:02,,Bebidas
+Guerrín,,Principal,-43323.00,2026-07-12,14:57:41,,Comer fuera
+Panadería,,Efectivo,-10569.00,2026-07-12,18:13:29,,Aperitivos
+Heladería Chungo,,Efectivo,-4147.00,2026-07-13,16:01:27,,Aperitivos
+Mostaza,,Principal,-49777.00,2026-07-13,18:58:40,,Comer fuera
+Mercado Libre,,Principal,-89241.00,2026-07-13,19:43:56,,Compras
+BA Taxi,,Principal,-15891.00,2026-07-14,07:03:49,,Transporte
+Ninina,,Efectivo,-9200.00,2026-07-14,08:32:55,,Bebidas
+Seguro del auto,,Principal,-86000.00,2026-07-14,10:00:00,,Seguros
+Mercado Libre,,Principal,-53580.00,2026-07-15,16:55:11,,Compras
+Cuervo café,,Efectivo,-5800.00,2026-07-16,11:22:03,,Bebidas
+Guitar Center strings,,Principal,-28554.00,2026-07-16,18:22:05,,Aficiones
+Cuervo café,,Principal,-5800.00,2026-07-17,08:28:20,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-07-17,14:26:56,,
+Extracción efectivo,,Efectivo,40000.00,2026-07-17,14:26:56,,
+BA Taxi,,Efectivo,-17814.00,2026-07-17,18:00:05,,Transporte
+Personal móvil,,Principal,-28400.00,2026-07-18,09:45:00,,Suministros
+SUBE subte,,Principal,-1910.00,2026-07-18,13:56:23,,Transporte
+Jumbo,,Principal,-67613.00,2026-07-19,12:45:38,,Compra
+Flybondi AEP–BRC,,Principal,-186000.00,2026-07-20,06:40:00,,Viajes
+Edenor luz,,Principal,-81663.00,2026-07-20,14:10:00,,Suministros
+Airbnb Bariloche,5 noches,Principal,-420000.00,2026-07-20,18:20:00,,Viajes
+Ninina,,Principal,-9200.00,2026-07-21,08:39:48,,Bebidas
+Cerro Catedral day pass,,Principal,-62000.00,2026-07-21,15:28:17,,Entretenimiento
+Cena El Boliche de Alberto,,Principal,-48000.00,2026-07-21,18:03:45,,Comer fuera
+Café Martínez,,Principal,-6200.00,2026-07-22,08:32:10,,Bebidas
+AySA agua,,Principal,-18500.00,2026-07-22,13:00:00,,Suministros
+Almuerzo Puerto Moreno,,Principal,-32500.00,2026-07-22,16:36:30,,Comer fuera
+Souvenirs centro cívico,,Principal,-27800.00,2026-07-22,18:37:29,,Compras
+Ninina,,Principal,-9200.00,2026-07-23,10:34:52,,Bebidas
+Taxi Bariloche,,Principal,-9600.00,2026-07-23,12:33:59,,Transporte
+Chocolate Rapa Nui,,Principal,-18400.00,2026-07-23,22:31:13,,Aperitivos
+Cena El Boliche de Alberto,,Principal,-51200.00,2026-07-24,14:29:55,,Comer fuera
+Starbucks,,Efectivo,-8100.00,2026-07-25,09:06:02,,Bebidas
+Sueldo,,Principal,3193655.82,2026-07-25,09:15:00,,Nómina
+Extracción cajero,,Principal,-80000.00,2026-07-25,12:30:00,,
+Extracción cajero,,Efectivo,80000.00,2026-07-25,12:30:00,,
+Ahorro mensual,,Principal,-200000.00,2026-07-25,12:35:00,,
+Ahorro mensual,,Ahorros,200000.00,2026-07-25,12:35:00,,
+Panadería,,Principal,-8927.00,2026-07-25,17:57:30,,Aperitivos
+Flybondi BRC–AEP,,Principal,-186000.00,2026-07-25,22:46:34,,Viajes
+YPF,,Principal,-50802.00,2026-07-26,10:01:56,,Gasolina
+Havanna café,,Principal,-7400.00,2026-07-26,10:08:58,,Bebidas
+Partido River,,Principal,-42000.00,2026-07-26,19:23:47,,Entretenimiento
+Carrefour,,Principal,-64163.00,2026-07-26,19:53:45,,Compra
+El Club de la Milanesa,,Principal,-47071.00,2026-07-26,20:07:24,,Comer fuera
+BA Taxi,,Principal,-11322.00,2026-07-27,07:50:19,,Transporte
+Ninina,,Principal,-9200.00,2026-07-27,08:23:06,,Bebidas
+Jumbo,,Principal,-44149.00,2026-07-27,16:46:46,,Compra
+Medialunas,,Efectivo,-7222.00,2026-07-27,17:11:26,,Aperitivos
+Medialunas,,Principal,-4851.00,2026-07-28,18:24:08,,Aperitivos
+Café Martínez,,Principal,-6200.00,2026-07-29,11:10:42,,Bebidas
+Uber,,Principal,-14296.00,2026-07-29,22:38:07,,Transporte
+PedidosYa,,Principal,-54568.00,2026-07-30,14:51:20,,Comer fuera
+Heladería Chungo,,Efectivo,-11863.00,2026-07-31,16:14:34,,Aperitivos
+Alquiler departamento,"Palermo, CABA",Principal,-850000.00,2026-08-01,08:15:00,,Alquiler
+Smart Fit,,Principal,-55000.00,2026-08-01,08:20:00,,Fitness
+Starbucks,,Principal,-8100.00,2026-08-01,10:36:54,,Bebidas
+Recital Niceto,,Principal,-28000.00,2026-08-01,20:13:39,,Entretenimiento
+iCloud+,,Principal,-2499.00,2026-08-02,00:05:12,,Suscripciones online
+Starbucks,,Principal,-8100.00,2026-08-02,08:25:47,,Bebidas
+Zara,,Principal,-87346.00,2026-08-02,12:22:49,,Compras
+Siga la Vaca,,Efectivo,-46663.00,2026-08-02,15:00:02,,Comer fuera
+Colectivo,,Principal,-1705.00,2026-08-02,22:26:56,,Transporte
+Cuervo café,,Principal,-5800.00,2026-08-03,11:49:29,,Bebidas
+Burger King,,Principal,-43812.00,2026-08-03,13:05:43,,Comer fuera
+Kiosco,,Principal,-7816.00,2026-08-03,16:56:13,,Aperitivos
+Museo MALBA,,Principal,-6000.00,2026-08-03,20:47:16,,Entretenimiento
+Uber,,Principal,-18090.00,2026-08-04,16:49:55,,Transporte
+Guitar Center strings,,Principal,-18142.00,2026-08-04,21:49:39,,Aficiones
+Netflix,,Principal,-12999.00,2026-08-05,00:08:40,,Suscripciones online
+Cuervo café,,Principal,-5800.00,2026-08-05,11:59:11,,Bebidas
+Easy,,Principal,-69477.00,2026-08-05,14:03:40,,Compras
+Coto,,Principal,-85821.00,2026-08-05,19:09:07,,Compra
+Fibertel internet,,Principal,-45000.00,2026-08-06,10:00:00,,Suministros
+Axion,,Principal,-46632.00,2026-08-06,10:02:37,,Gasolina
+Havanna café,,Principal,-7400.00,2026-08-06,10:33:01,,Bebidas
+Heladería Chungo,,Principal,-7346.00,2026-08-06,16:28:40,,Aperitivos
+Cabify,,Principal,-15109.00,2026-08-07,10:15:14,,Transporte
+Don Julio (barra),,Efectivo,-32253.00,2026-08-07,13:48:34,,Comer fuera
+Extracción efectivo,,Principal,-40000.00,2026-08-07,14:58:28,,
+Extracción efectivo,,Efectivo,40000.00,2026-08-07,14:58:28,,
+Mercado Libre,,Principal,-44077.00,2026-08-07,15:29:35,,Compras
+Siga la Vaca,,Principal,-44301.00,2026-08-08,13:18:36,,Comer fuera
+Coto,,Principal,-83576.00,2026-08-08,15:44:16,,Compra
+Regalo papá,Día del Padre,Principal,-38500.00,2026-08-08,17:07:33,,Regalos
+Heladería Chungo,,Efectivo,-11736.00,2026-08-08,17:18:03,,Aperitivos
+Spotify,,Principal,-7999.00,2026-08-09,00:03:21,,Suscripciones online
+YPF,,Principal,-47539.00,2026-08-09,10:16:33,,Gasolina
+Disco,,Principal,-81227.00,2026-08-09,11:05:35,,Compra
+Donación mensual,Cruz Roja Argentina,Principal,-8000.00,2026-08-10,11:30:00,,Donaciones
+Guerrín,,Principal,-16740.00,2026-08-10,19:00:22,,Comer fuera
+Ninina,,Principal,-9200.00,2026-08-11,11:57:45,,Bebidas
+Monotributo,,Principal,-52000.00,2026-08-11,16:00:00,,Impuestos
+SUBE subte,,Efectivo,-1569.00,2026-08-11,22:55:18,,Transporte
+ChatGPT Plus,,Principal,-24900.00,2026-08-12,00:12:00,,Suscripciones online
+Café Martínez,,Principal,-6200.00,2026-08-13,11:32:41,,Bebidas
+Guerrín,,Principal,-34100.00,2026-08-13,15:16:35,,Comer fuera
+Cinemark,,Principal,-14500.00,2026-08-13,15:52:18,,Entretenimiento
+Medialunas,,Principal,-11046.00,2026-08-13,16:11:29,,Aperitivos
+Cuervo café,,Efectivo,-5800.00,2026-08-14,09:41:48,,Bebidas
+YPF,,Principal,-47430.00,2026-08-14,10:48:53,,Gasolina
+Panadería,,Principal,-7736.00,2026-08-14,18:10:38,,Aperitivos
+BA Taxi,,Principal,-13792.00,2026-08-14,23:00:14,,Transporte
+Starbucks,,Principal,-8100.00,2026-08-15,08:40:36,,Bebidas
+Guerrín,,Efectivo,-46651.00,2026-08-15,14:07:57,,Comer fuera
+Farmacity higiene,,Principal,-12348.00,2026-08-15,14:35:12,,Higiene
+Disco,,Principal,-38384.00,2026-08-15,16:23:03,,Compra
+Freelance USD,Cliente en el exterior,Dólares,385.22,2026-08-15,17:40:00,,Servicios
+Havanna café,,Efectivo,-7400.00,2026-08-16,09:21:19,,Bebidas
+Carrefour,,Principal,-82662.00,2026-08-16,13:59:04,,Compra
+Lego,,Principal,-36274.00,2026-08-16,14:09:52,,Aficiones
+Cabify,,Principal,-17156.00,2026-08-17,08:57:09,,Transporte
+Ninina,,Efectivo,-9200.00,2026-08-17,10:36:58,,Bebidas
+Coto,,Principal,-87599.00,2026-08-17,11:09:04,,Compra
+PedidosYa,,Principal,-49850.00,2026-08-17,16:56:15,,Comer fuera
+Personal móvil,,Principal,-28400.00,2026-08-18,09:45:00,,Suministros
+Ninina,,Efectivo,-9200.00,2026-08-18,11:26:58,,Bebidas
+Cabify,,Principal,-9956.00,2026-08-18,20:14:27,,Transporte
+Lego,,Principal,-12817.00,2026-08-18,20:41:28,,Aficiones
+Museo MALBA,,Principal,-6000.00,2026-08-19,20:02:33,,Entretenimiento
+BA Taxi,,Principal,-8572.00,2026-08-19,23:52:50,,Transporte
+YPF,,Principal,-42633.00,2026-08-20,13:49:06,,Gasolina
+Edenor luz,,Principal,-63376.00,2026-08-20,14:10:00,,Suministros
+Kiosco,,Principal,-7349.00,2026-08-20,17:38:27,,Aperitivos
+Colectivo,,Principal,-2104.00,2026-08-20,18:06:36,,Transporte
+Guerrín,,Principal,-55201.00,2026-08-20,19:52:56,,Comer fuera
+Havanna café,,Principal,-7400.00,2026-08-21,11:59:40,,Bebidas
+Cuervo café,,Principal,-5800.00,2026-08-22,10:11:08,,Bebidas
+AySA agua,,Principal,-18500.00,2026-08-22,13:00:00,,Suministros
+Museo MALBA,,Principal,-6000.00,2026-08-22,17:58:49,,Entretenimiento
+BA Taxi,,Principal,-15805.00,2026-08-23,08:15:45,,Transporte
+YPF,,Principal,-56630.00,2026-08-23,12:43:14,,Gasolina
+Coto,,Principal,-44366.00,2026-08-23,14:32:37,,Compra
+Panadería,,Principal,-7554.00,2026-08-23,16:36:21,,Aperitivos
+Siga la Vaca,,Principal,-33795.00,2026-08-23,20:31:50,,Comer fuera
+Café Martínez,,Efectivo,-6200.00,2026-08-24,09:57:33,,Bebidas
+Mostaza,,Principal,-52459.00,2026-08-24,12:56:32,,Comer fuera
+Café Martínez,,Principal,-6200.00,2026-08-25,08:12:18,,Bebidas
+Sueldo,,Principal,3178165.86,2026-08-25,09:15:00,,Nómina
+Extracción cajero,,Principal,-80000.00,2026-08-25,12:30:00,,
+Extracción cajero,,Efectivo,80000.00,2026-08-25,12:30:00,,
+Ahorro mensual,,Principal,-200000.00,2026-08-25,12:35:00,,
+Ahorro mensual,,Ahorros,200000.00,2026-08-25,12:35:00,,
+Ninina,,Principal,-9200.00,2026-08-26,10:49:22,,Bebidas
+Cabify,,Efectivo,-16082.00,2026-08-26,16:33:00,,Transporte
+Havanna café,,Principal,-7400.00,2026-08-27,11:41:59,,Bebidas
+Uber,,Principal,-7679.00,2026-08-27,19:09:30,,Transporte
+Café Martínez,,Principal,-6200.00,2026-08-28,11:02:43,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-08-28,14:38:52,,
+Extracción efectivo,,Efectivo,40000.00,2026-08-28,14:38:52,,
+Libros Gandhi,,Principal,-35450.00,2026-08-28,15:58:41,,Aficiones
+BA Taxi,,Principal,-10405.00,2026-08-28,23:54:13,,Transporte
+Starbucks,,Principal,-8100.00,2026-08-29,11:06:59,,Bebidas
+BA Taxi,,Efectivo,-18224.00,2026-08-29,15:49:51,,Transporte
+El Club de la Milanesa,,Efectivo,-36782.00,2026-08-29,17:34:31,,Comer fuera
+Carrefour,,Principal,-97626.00,2026-08-30,17:37:19,,Compra
+Cabify,,Efectivo,-11897.00,2026-08-31,07:09:39,,Transporte
+Starbucks,,Efectivo,-8100.00,2026-08-31,10:35:59,,Bebidas
+Alquiler departamento,"Palermo, CABA",Principal,-850000.00,2026-09-01,08:15:00,,Alquiler
+Smart Fit,,Principal,-55000.00,2026-09-01,08:20:00,,Fitness
+Café Martínez,,Efectivo,-6200.00,2026-09-01,10:34:30,,Bebidas
+iCloud+,,Principal,-2499.00,2026-09-02,00:05:12,,Suscripciones online
+Cuervo café,,Efectivo,-5800.00,2026-09-02,11:13:21,,Bebidas
+Burger King,,Principal,-22798.00,2026-09-02,19:57:01,,Comer fuera
+Cabify,,Efectivo,-16561.00,2026-09-02,21:34:26,,Transporte
+Colectivo,,Principal,-1417.00,2026-09-03,13:35:54,,Transporte
+Don Julio (barra),,Principal,-24779.00,2026-09-03,14:00:52,,Comer fuera
+Recital Niceto,,Principal,-28000.00,2026-09-03,16:24:25,,Entretenimiento
+Havanna café,,Principal,-7400.00,2026-09-04,10:43:07,,Bebidas
+Extracción efectivo,,Principal,-40000.00,2026-09-04,13:34:47,,
+Extracción efectivo,,Efectivo,40000.00,2026-09-04,13:34:47,,
+SUBE subte,,Principal,-2092.00,2026-09-04,21:56:02,,Transporte
+Netflix,,Principal,-12999.00,2026-09-05,00:08:40,,Suscripciones online
+Disco,,Principal,-69684.00,2026-09-05,12:08:34,,Compra
+Mostaza,,Principal,-30400.00,2026-09-05,17:31:07,,Comer fuera
+Fibertel internet,,Principal,-45000.00,2026-09-06,10:00:00,,Suministros
+Mercado Libre,,Principal,-52294.00,2026-09-06,18:01:02,,Compras
+Colectivo,,Principal,-1576.00,2026-09-06,22:07:25,,Transporte
+Cuervo café,,Principal,-5800.00,2026-09-07,08:33:21,,Bebidas
+Disco,,Principal,-84172.00,2026-09-08,19:10:08,,Compra
+Uber,,Principal,-7617.00,2026-09-08,21:14:40,,Transporte
+Spotify,,Principal,-7999.00,2026-09-09,00:03:21,,Suscripciones online
+Uber,,Principal,-7294.00,2026-09-09,08:00:19,,Transporte
+Donación mensual,Cruz Roja Argentina,Principal,-8000.00,2026-09-10,11:30:00,,Donaciones
+PedidosYa,,Efectivo,-39442.00,2026-09-10,14:14:47,,Comer fuera
+Uniqlo,,Principal,-71821.00,2026-09-10,16:43:37,,Compras
+Ninina,,Principal,-9200.00,2026-09-11,10:29:52,,Bebidas
+Mercado Libre,,Principal,-85977.00,2026-09-11,13:13:58,,Compras
+BA Taxi,,Principal,-7870.00,2026-09-11,16:37:47,,Transporte
+ChatGPT Plus,,Principal,-24900.00,2026-09-12,00:12:00,,Suscripciones online
+Cuervo café,,Principal,-5800.00,2026-09-12,09:19:19,,Bebidas
+BA Taxi,,Principal,-12109.00,2026-09-12,13:24:28,,Transporte
+Disco,,Principal,-42074.00,2026-09-12,16:02:52,,Compra
+Medialunas,,Principal,-6021.00,2026-09-12,17:56:15,,Aperitivos
+Burger King,,Principal,-26292.00,2026-09-12,21:46:15,,Comer fuera
+YPF,,Principal,-46824.00,2026-09-13,10:12:06,,Gasolina
+Ninina,,Principal,-9200.00,2026-09-13,11:56:11,,Bebidas
+Mercado Libre,,Principal,-51491.00,2026-09-13,20:12:39,,Compras
+Cuervo café,,Principal,-5800.00,2026-09-14,09:19:23,,Bebidas
+Rappi,,Principal,-47836.00,2026-09-14,13:57:38,,Comer fuera
+SUBE subte,,Principal,-1341.00,2026-09-14,21:01:26,,Transporte
