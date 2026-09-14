@@ -187,7 +187,7 @@ class _FlowLocalizationDelegate
     FlowLocalizations localization = FlowLocalizations(
       FlowLocalizations.supportedLocales.contains(locale)
           ? locale
-          : FlowLocalizations.supportedLocales[1],
+          : FlowLocalizations.supportedLocales.first,
     );
     await localization.load();
     unawaited(HomeWidgets.syncAll().catchError((_) {}));

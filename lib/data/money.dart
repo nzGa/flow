@@ -2,7 +2,6 @@ import "dart:math" as math;
 
 import "package:flow/data/exchange_rates.dart";
 import "package:flow/services/currency_registry.dart";
-import "package:flow/services/user_preferences.dart";
 import "package:flow/utils/optional.dart";
 import "package:intl/intl.dart";
 import "package:logging/logging.dart";
@@ -166,17 +165,6 @@ class Money {
     int? decimalDigits,
   }) {
     final num amountToFormat = takeAbsoluteValue ? amount.abs() : amount;
-    final String currencyToFormat = !includeCurrency ? "" : currency;
-    useCurrencySymbol = useCurrencySymbol && includeCurrency;
-
-    Optional<String?>? formatterPattern = customIcuPattern;
-
-    if (formatterPattern == null &&
-        UserPreferencesService().icuCurrencyFormattingPattern != null) {
-      formatterPattern = Optional(
-        UserPreferencesService().icuCurrencyFormattingPattern!,
-      );
-    }
 
     if (decimalDigits == null) {
       final int? preferredDecimalPlaces = CurrencyRegistryService()
@@ -192,26 +180,12 @@ class Money {
       }
     }
 
-    final String? symbol = useCurrencySymbol
-        ? NumberFormat.simpleCurrency(
-            locale: Intl.defaultLocale,
-            name: currencyToFormat,
-          ).currencySymbol
-        : null;
-
-    if (compact) {
-      return NumberFormat.compactCurrency(
-        locale: Intl.defaultLocale,
-        name: currencyToFormat,
-        symbol: symbol,
-        decimalDigits: decimalDigits,
-      ).format(amountToFormat);
-    }
+    // Always show the ISO code (ARS, EUR, USD, …), never a symbol, and
+    // never compact/abbreviated amounts.
     return NumberFormat.currency(
       locale: Intl.defaultLocale,
-      name: currencyToFormat,
-      symbol: symbol,
-      customPattern: formatterPattern?.value,
+      name: currency,
+      symbol: includeCurrency ? currency : "",
       decimalDigits: decimalDigits,
     ).format(amountToFormat);
   }

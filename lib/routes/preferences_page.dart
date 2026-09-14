@@ -1,5 +1,3 @@
-import "dart:io";
-
 import "package:flow/l10n/flow_localizations.dart";
 import "package:flow/prefs/local_preferences.dart";
 import "package:flow/routes/preferences/language_selection_sheet.dart";
@@ -17,7 +15,6 @@ import "package:flutter/material.dart" hide Flow;
 import "package:go_router/go_router.dart";
 import "package:logging/logging.dart";
 import "package:material_symbols_icons_flow/symbols.dart";
-import "package:permission_handler/permission_handler.dart";
 
 final Logger _log = Logger("PreferencesPage");
 
@@ -106,18 +103,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               ),
               trailing: const LeChevron(),
             ),
-            ListTile(
-              title: Text("preferences.trashBin".t(context)),
-              leading: const Icon(Symbols.delete_rounded),
-              onTap: () => _pushAndRefreshAfter("/preferences/trashBin"),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
-              title: Text("preferences.moneyFormatting".t(context)),
-              leading: const Icon(Symbols.numbers_rounded),
-              onTap: () => _pushAndRefreshAfter("/preferences/moneyFormatting"),
-              trailing: const LeChevron(),
-            ),
             const SizedBox(height: 24.0),
             ListHeader("preferences.transactions".t(context)),
             const SizedBox(height: 8.0),
@@ -181,25 +166,6 @@ class PreferencesPageState extends State<PreferencesPage> {
   }
 
   void _updateLanguage() async {
-    if (Platform.isIOS) {
-      await LocalPreferences().localeOverride.remove().catchError((
-        e,
-        stackTrace,
-      ) {
-        _log.warning("Failed to remove locale override", e, stackTrace);
-      });
-      try {
-        await openAppSettings();
-        return;
-      } catch (e, stackTrace) {
-        _log.warning(
-          "Failed to open system app settings on iOS",
-          e,
-          stackTrace,
-        );
-      }
-    }
-
     if (_languageBusy || !mounted) return;
 
     setState(() {

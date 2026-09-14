@@ -1,29 +1,24 @@
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flow/data/money.dart";
-import "package:flow/prefs/local_preferences.dart";
 import "package:flow/widgets/general/money_text_builder.dart";
 import "package:flow/widgets/general/money_text_raw.dart";
 import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 
-class MoneyText extends StatefulWidget {
+class MoneyText extends StatelessWidget {
   final Money? money;
 
-  /// Defaults to [false]
+  /// Ignored. Amounts are never abbreviated.
   final bool initiallyAbbreviated;
 
-  /// Defaults to [false]
+  /// Ignored. Tapping does not compact the amount.
   final bool tapToToggleAbbreviation;
 
-  /// This will work even if [tapToToggleAbbreviation] enabled.
   final VoidCallback? onTap;
 
   final bool displayAbsoluteAmount;
   final bool omitCurrency;
 
-  /// Uses 3-letter-code instead of the currency symbol.
-  ///
-  /// e.g., '€' instead of 'EUR'
+  /// Ignored. ISO codes (ARS, EUR, USD) are always used.
   final bool? overrideUseCurrencySymbol;
 
   /// When true, renders [AutoSizeText]
@@ -65,66 +60,25 @@ class MoneyText extends StatefulWidget {
   });
 
   @override
-  State<MoneyText> createState() => _MoneyTextState();
-}
-
-class _MoneyTextState extends State<MoneyText> {
-  late bool abbreviate;
-
-  @override
-  void initState() {
-    super.initState();
-
-    abbreviate = widget.initiallyAbbreviated;
-  }
-
-  @override
-  void didUpdateWidget(covariant MoneyText oldWidget) {
-    if (widget.initiallyAbbreviated != oldWidget.initiallyAbbreviated) {
-      abbreviate = widget.initiallyAbbreviated;
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MoneyTextBuilder(
-      money: widget.money,
-      abbreviate: abbreviate,
-      overrideObscure: widget.overrideObscure,
-      overrideUseCurrencySymbol: widget.overrideUseCurrencySymbol,
-      displayAbsoluteAmount: widget.displayAbsoluteAmount,
-      omitCurrency: widget.omitCurrency,
+      money: money,
+      abbreviate: false,
+      overrideObscure: overrideObscure,
+      overrideUseCurrencySymbol: false,
+      displayAbsoluteAmount: displayAbsoluteAmount,
+      omitCurrency: omitCurrency,
       builder: (context, text, money) {
-        final bool hasAction =
-            widget.onTap != null || widget.tapToToggleAbbreviation;
-
         return MoneyTextRaw(
           text: text,
-          style: widget.style,
-          textAlign: widget.textAlign,
-          maxLines: widget.maxLines,
-          onTap: hasAction ? () => handleTap() : null,
-          autoSizeGroup: widget.autoSizeGroup,
-          autoSize: widget.autoSize,
+          style: style,
+          textAlign: textAlign,
+          maxLines: maxLines,
+          onTap: onTap,
+          autoSizeGroup: autoSizeGroup,
+          autoSize: autoSize,
         );
       },
     );
-  }
-
-  void handleTap() {
-    if (widget.tapToToggleAbbreviation) {
-      abbreviate = !abbreviate;
-
-      if (LocalPreferences().enableHapticFeedback.get()) {
-        HapticFeedback.lightImpact();
-      }
-
-      if (mounted) setState(() => {});
-    }
-
-    if (widget.onTap != null) {
-      widget.onTap!();
-    }
   }
 }
