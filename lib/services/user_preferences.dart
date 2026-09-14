@@ -55,7 +55,7 @@ class UserPreferencesService {
       return savedThemeName!;
     }
 
-    return flowLights.schemes.first.name;
+    return defaultThemeName;
   }
 
   String? get themeNameRaw => value.themeName;

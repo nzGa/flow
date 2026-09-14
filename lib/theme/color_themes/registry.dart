@@ -22,6 +22,9 @@ export "flow/flow_oleds.dart";
 export "palenight.dart";
 export "monochrome.dart";
 
+/// First-run / unset theme: Catppuccin Frappé Sapphire.
+const String defaultThemeName = "catppuccinSapphireFrappe";
+
 final Map<String, FlowColorScheme> standaloneThemes = {
   "palenight": palenight,
   "monochrome": monochrome,
@@ -60,7 +63,7 @@ FlowThemeGroup getGroupByTheme(String themeName) {
           (group) => group.schemes.any((scheme) => scheme.name == themeName),
         );
   } catch (e) {
-    return flowLights;
+    return catppuccinFrappe;
   }
 }
 
@@ -70,12 +73,12 @@ FlowColorScheme? getThemeStrict(String? themeName) {
 
 FlowColorScheme getTheme(String? themeName, {bool preferDark = false}) {
   final FlowColorScheme? scheme = themeName == null
-      ? null
+      ? allThemes[defaultThemeName]
       : allThemes[themeName];
 
   if (scheme == null) {
     themeLogger.warning("Unknown theme: $themeName", StackTrace.current);
-    return preferDark ? flowDarks.schemes.first : flowDarks.schemes.first;
+    return allThemes[defaultThemeName]!;
   }
 
   return scheme;
