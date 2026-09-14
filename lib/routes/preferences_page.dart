@@ -99,17 +99,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               trailing: const LeChevron(),
             ),
             const SizedBox(height: 24.0),
-            ListHeader("preferences.transactions".t(context)),
-            const SizedBox(height: 8.0),
-            ListTile(
-              leading: const Icon(Symbols.list_rounded),
-              title: Text("preferences.transactions.listTile".t(context)),
-              onTap: () => _pushAndRefreshAfter(
-                "/preferences/transactionListItemAppearance",
-              ),
-              trailing: const LeChevron(),
-            ),
-            const SizedBox(height: 24.0),
             ListHeader("preferences.appearance".t(context)),
             const SizedBox(height: 8.0),
             ListTile(
