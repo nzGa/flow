@@ -14,13 +14,13 @@ UserPreferences _$UserPreferencesFromJson(Map<String, dynamic> json) =>
         useCategoryNameForUntitledTransactions:
             json['useCategoryNameForUntitledTransactions'] as bool? ?? false,
         transactionListTileShowCategoryName:
-            json['transactionListTileShowCategoryName'] as bool? ?? false,
+            json['transactionListTileShowCategoryName'] as bool? ?? true,
         transactionListTileShowAccountForLeading:
             json['transactionListTileShowAccountForLeading'] as bool? ?? false,
         transactionListTileShowExternalSource:
-            json['transactionListTileShowExternalSource'] as bool? ?? true,
+            json['transactionListTileShowExternalSource'] as bool? ?? false,
         transactionListTileRelaxedDensity:
-            json['transactionListTileRelaxedDensity'] as bool? ?? false,
+            json['transactionListTileRelaxedDensity'] as bool? ?? true,
         createTransactionsPerItemInScans:
             json['createTransactionsPerItemInScans'] as bool? ?? true,
         scansPendingThresholdInHours:

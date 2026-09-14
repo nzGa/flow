@@ -101,6 +101,7 @@ flutter:
         - assets/l10n/
         - assets/images/
         - assets/images/external/
+        - assets/sample_import.csv
 
     fonts:
         - family: Poppins

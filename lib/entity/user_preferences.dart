@@ -69,6 +69,8 @@ class UserPreferences implements EntityBase {
   /// e.g., to set a daily reminder at 9:00 AM, set it to 9 hours
   int? remindDailyAtRelativeSeconds;
 
+  /// Persisted for ObjectBox compatibility. Runtime list appearance is
+  /// hardcoded and is no longer a user-facing preference.
   bool useCategoryNameForUntitledTransactions;
 
   bool transactionListTileShowCategoryName;
@@ -170,10 +172,10 @@ class UserPreferences implements EntityBase {
     this.combineTransfers = true,
     this.excludeTransfersFromFlow = true,
     this.useCategoryNameForUntitledTransactions = false,
-    this.transactionListTileShowCategoryName = false,
+    this.transactionListTileShowCategoryName = true,
     this.transactionListTileShowAccountForLeading = false,
-    this.transactionListTileShowExternalSource = true,
-    this.transactionListTileRelaxedDensity = false,
+    this.transactionListTileShowExternalSource = false,
+    this.transactionListTileRelaxedDensity = true,
     this.createTransactionsPerItemInScans = true,
     this.scansPendingThresholdInHours = 6,
     this.privacyModeUponLaunch = false,

@@ -52,7 +52,11 @@ Future<List<List>> parseCsvFromFile(File file) async {
     );
   }
 
-  final String lineBreaksNormalized = LineBreakNormalizer.normalize(parsed);
+  return parseCsvFromString(parsed);
+}
+
+List<List> parseCsvFromString(String csv) {
+  final String lineBreaksNormalized = LineBreakNormalizer.normalize(csv);
 
   return CsvToListConverter(
     eol: LineBreakNormalizer.terminator,

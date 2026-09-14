@@ -5,7 +5,6 @@ import "package:flow/data/exchange_rates.dart";
 import "package:flow/data/single_currency_flow.dart";
 import "package:flow/data/transaction_filter.dart";
 import "package:flow/data/transactions_filter/pending_time_range.dart";
-import "package:flow/data/transactions_filter/time_range.dart";
 import "package:flow/entity/transaction.dart";
 import "package:flow/entity/transaction_filter_preset.dart";
 import "package:flow/l10n/extensions.dart";
@@ -19,8 +18,6 @@ import "package:flow/theme/helpers.dart";
 import "package:flow/utils/utils.dart";
 import "package:flow/widgets/default_transaction_filter_head.dart";
 import "package:flow/widgets/general/frame.dart";
-import "package:flow/widgets/general/pending_transactions_header.dart";
-import "package:flow/widgets/general/wavy_divider.dart";
 import "package:flow/widgets/grouped_transactions_list_view.dart";
 import "package:flow/widgets/home/greetings_bar.dart";
 import "package:flow/widgets/home/home/flow_cards.dart";
@@ -59,29 +56,12 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
   TransactionFilter get normalizedCurrentFilter =>
       currentFilter.copyWithOptional(isPending: Optional(null));
 
-  TransactionFilter get pendingTransactionsFilter {
-    final TimeRange? timeRange = currentFilter.range?.range;
-    final TimeRange plannedTranasctionsTimeRange = _plannedTransactionsTimeRange
-        .range(homeTimeRange: timeRange);
-
-    return currentFilter.copyWithOptional(
-      range: Optional(
-        TransactionFilterTimeRange.fromTimeRange(
-          CustomTimeRange(Moment.minValue, plannedTranasctionsTimeRange.to),
-        ),
-      ),
-      isPending: Optional(true),
-    );
-  }
-
   late final bool noTransactionsAtAll;
 
   late final TransactionsSelectionController _selection;
 
   StreamSubscription<List<Transaction>>? _currentTransactionsSub;
-  StreamSubscription<List<Transaction>>? _pendingTransactionsSub;
   List<Transaction>? _currentTransactions;
-  List<Transaction>? _pendingTransactions;
   bool _readyToSubscribe = false;
 
   @override
@@ -122,7 +102,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
   @override
   void dispose() {
     _currentTransactionsSub?.cancel();
-    _pendingTransactionsSub?.cancel();
     _selection.removeListener(_onSelectionChanged);
     _selection.dispose();
     _listener.dispose();
@@ -158,18 +137,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
             _currentTransactions = txns;
           });
         });
-
-    _pendingTransactionsSub?.cancel();
-    _pendingTransactionsSub = pendingTransactionsFilter
-        .queryBuilder()
-        .watch(triggerImmediately: true)
-        .map((event) => event.find())
-        .listen((txns) {
-          if (!mounted) return;
-          setState(() {
-            _pendingTransactions = txns;
-          });
-        });
   }
 
   @override
@@ -178,7 +145,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
 
     final bool isFilterModified = currentFilter != defaultFilter;
     final List<Transaction>? currentTxns = _currentTransactions;
-    final List<Transaction>? pendingTxns = _pendingTransactions;
     final bool hasCurrent = currentTxns != null;
 
     final DateTime now = Moment.now().startOfNextMinute();
@@ -187,16 +153,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
     );
 
     final List<Transaction> transactions = [
-      ...?pendingTxns?.where(
-        (transaction) =>
-            pendingTransactionsFilter.postPredicates.every(
-              (predicate) => predicate(transaction),
-            ) &&
-            normalizedCurrentFilter.range?.range?.contains(
-                  transaction.transactionDate,
-                ) !=
-                true,
-      ),
       ...?currentTxns?.where(
         (transaction) => normalizedCurrentFilter.postPredicates.every(
           (predicate) => predicate(transaction),
@@ -287,24 +243,6 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
             )
             .groupByRange(rangeFn: currentFilter.groupBy.fromTransaction);
 
-        final List<Transaction> pendingTransactions = transactions
-            .where(
-              (transaction) =>
-                  transaction.isPending == true ||
-                  transaction.transactionDate.isAfter(now),
-            )
-            .toList();
-
-        final int actionNeededCount = pendingTransactions
-            .where((transaction) => transaction.confirmable())
-            .length;
-
-        final Map<TimeRange, List<Transaction>> pendingTransactionsGrouped =
-            pendingTransactions.groupByRange(
-              rangeFn: (transaction) =>
-                  CustomTimeRange(Moment.minValue, Moment.maxValue),
-            );
-
         final bool shouldCombineTransferIfNeeded =
             currentFilter.accounts == null;
 
@@ -376,18 +314,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
           controller: widget.scrollController,
           transactions: grouped,
           groupBy: currentFilter.groupBy,
-          pendingTransactions: pendingTransactionsGrouped,
           shouldCombineTransferIfNeeded: shouldCombineTransferIfNeeded,
-          pendingDivider: const WavyDivider(),
           headerBuilder: (pendingGroup, range, transactions) {
-            if (pendingGroup) {
-              return PendingTransactionsHeader(
-                transactions: transactions,
-                range: range,
-                badgeCount: actionNeededCount,
-              );
-            }
-
             return TransactionListDateHeader(
               transactions: transactions,
               range: range,

@@ -157,55 +157,20 @@ class UserPreferencesService {
     ObjectBox().box<UserPreferences>().put(value);
   }
 
-  bool get useCategoryNameForUntitledTransactions =>
-      value.useCategoryNameForUntitledTransactions;
-  set useCategoryNameForUntitledTransactions(
-    bool newUseCategoryNameForUntitledTransactions,
-  ) {
-    value.useCategoryNameForUntitledTransactions =
-        newUseCategoryNameForUntitledTransactions;
-    ObjectBox().box<UserPreferences>().put(value);
-  }
+  /// Untitled transactions keep a generic title, not the category name.
+  bool get useCategoryNameForUntitledTransactions => false;
 
-  bool get transactionListTileShowCategoryName =>
-      value.transactionListTileShowCategoryName;
-  set transactionListTileShowCategoryName(
-    bool newTransactionListTileShowCategoryName,
-  ) {
-    value.transactionListTileShowCategoryName =
-        newTransactionListTileShowCategoryName;
-    ObjectBox().box<UserPreferences>().put(value);
-  }
+  /// Show the category after the account in the transaction list.
+  bool get transactionListTileShowCategoryName => true;
 
-  bool get transactionListTileShowExternalSource =>
-      value.transactionListTileShowExternalSource;
-  set transactionListTileShowExternalSource(
-    bool newTransactionListTileShowExternalSource,
-  ) {
-    value.transactionListTileShowExternalSource =
-        newTransactionListTileShowExternalSource;
-    ObjectBox().box<UserPreferences>().put(value);
-  }
+  /// Hide external sources such as Eny on list items.
+  bool get transactionListTileShowExternalSource => false;
 
-  bool get transactionListTileRelaxedDensity =>
-      value.transactionListTileRelaxedDensity;
-  set transactionListTileRelaxedDensity(
-    bool newTransactionListTileRelaxedDensity,
-  ) {
-    value.transactionListTileRelaxedDensity =
-        newTransactionListTileRelaxedDensity;
-    ObjectBox().box<UserPreferences>().put(value);
-  }
+  /// Use a less dense transaction list layout.
+  bool get transactionListTileRelaxedDensity => true;
 
-  bool get transactionListTileShowAccountForLeading =>
-      value.transactionListTileShowAccountForLeading;
-  set transactionListTileShowAccountForLeading(
-    bool newTransactionListTileShowAccountForLeading,
-  ) {
-    value.transactionListTileShowAccountForLeading =
-        newTransactionListTileShowAccountForLeading;
-    ObjectBox().box<UserPreferences>().put(value);
-  }
+  /// Use the category icon as the leading icon, not the account.
+  bool get transactionListTileShowAccountForLeading => false;
 
   bool get createTransactionsPerItemInScans =>
       value.createTransactionsPerItemInScans;
