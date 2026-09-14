@@ -22,4 +22,28 @@ void main() {
 
     expect(invalid, CSVCellParserError.invalidDate);
   });
+  test("Sample six-month import csv", () async {
+    final sample = await CSVParsedData.fromFile(File("docs/sample_import.csv"));
+
+    expect(sample.accountNames, {
+      "Principal",
+      "Efectivo",
+      "Ahorros",
+      "Dólares",
+    });
+    expect(sample.transactions.length, greaterThan(400));
+    expect(sample.categoryNames.nonNulls.length, greaterThanOrEqualTo(15));
+
+    final dates = sample.transactions.map((t) => t.transactionDate).toList();
+    expect(
+      dates.every(
+        (d) =>
+            !d.isBefore(DateTime(2026, 3, 14)) &&
+            !d.isAfter(DateTime(2026, 9, 14, 23, 59, 59)),
+      ),
+      isTrue,
+    );
+    expect(sample.transactions.any((t) => t.amount > 0), isTrue);
+    expect(sample.transactions.any((t) => t.amount < 0), isTrue);
+  });
 }
