@@ -119,14 +119,6 @@ class PreferencesPageState extends State<PreferencesPage> {
               trailing: const LeChevron(),
             ),
             ListTile(
-              leading: const Icon(Symbols.list_rounded),
-              title: Text("preferences.transactions.listTile".t(context)),
-              onTap: () => _pushAndRefreshAfter(
-                "/preferences/transactionListItemAppearance",
-              ),
-              trailing: const LeChevron(),
-            ),
-            ListTile(
               leading: const Icon(Symbols.automation_rounded),
               title: Text("preferences.transactionEntryFlow".t(context)),
               onTap: () =>

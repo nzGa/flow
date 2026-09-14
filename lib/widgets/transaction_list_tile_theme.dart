@@ -68,13 +68,13 @@ class TransactionListTileThemeData {
 
   static const TransactionListTileThemeData fallback =
       TransactionListTileThemeData(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-        useCategoryNameForUntitledTransactions: true,
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        useCategoryNameForUntitledTransactions: false,
         useAccountIconForLeading: false,
-        showExternalSource: true,
-        showCategory: false,
-        spacing: 8.0,
-        titleSpacing: 0.0,
+        showExternalSource: false,
+        showCategory: true,
+        spacing: 12.0,
+        titleSpacing: 2.0,
       );
 
   TransactionListTileThemeData merge(TransactionListTileThemeData? other) =>

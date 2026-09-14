@@ -34,7 +34,6 @@ import "package:flow/routes/preferences/pending_transactions_preferences_page.da
 import "package:flow/routes/preferences/sync_preferences_page.dart";
 import "package:flow/routes/preferences/theme_preferences_page.dart";
 import "package:flow/routes/preferences/transaction_entry_flow_preferences_page.dart";
-import "package:flow/routes/preferences/transaction_list_item_appearance_preferences_page.dart";
 import "package:flow/routes/preferences/transfer_preferences_page.dart";
 import "package:flow/routes/preferences_page.dart";
 import "package:flow/routes/profile_page.dart";
@@ -267,11 +266,6 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: "sync",
           builder: (context, state) => const SyncPreferencesPage(),
-        ),
-        GoRoute(
-          path: "transactionListItemAppearance",
-          builder: (context, state) =>
-              const TransactionListItemAppearancePreferencesPage(),
         ),
       ],
     ),
