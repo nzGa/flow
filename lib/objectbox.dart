@@ -11,7 +11,6 @@ import "package:flow/entity/budget.dart";
 import "package:flow/entity/category.dart";
 import "package:flow/entity/file_attachment.dart";
 import "package:flow/entity/goal.dart";
-import "package:flow/entity/profile.dart";
 import "package:flow/entity/recurring_transaction.dart";
 import "package:flow/entity/transaction.dart";
 import "package:flow/entity/transaction_filter_preset.dart";
@@ -319,23 +318,27 @@ class ObjectBox {
   ///
   /// * Profile
   /// * BackupEntry
+  ///
+  /// Must run in a single write transaction. Parallel [Box.removeAllAsync]
+  /// calls each spawn a worker isolate against the same store and can deadlock
+  /// (the sample-data import hung after logging this wipe).
   Future<void> eraseMainData() async {
     _log.info("Erasing all data, except for Profile and BackupEntry");
-
-    try {
-      await Future.wait([
-        box<Transaction>().removeAllAsync(),
-        box<Category>().removeAllAsync(),
-        box<Account>().removeAllAsync(),
-        box<Profile>().removeAllAsync(),
-        box<UserPreferences>().removeAllAsync(),
-        box<Budget>().removeAllAsync(),
-        box<Goal>().removeAllAsync(),
-        box<TransactionTag>().removeAllAsync(),
-        box<FileAttachment>().removeAllAsync(),
-        box<RecurringTransaction>().removeAllAsync(),
-        box<TransactionFilterPreset>().removeAllAsync(),
-      ]);
-    } finally {}
+    await store.runInTransactionAsync(TxMode.write, _eraseMainDataTx, null);
+    _log.info("Finished erasing main data");
   }
+}
+
+/// Isolate callback for [ObjectBox.eraseMainData]. Must stay top-level.
+void _eraseMainDataTx(Store store, void _) {
+  store.box<Transaction>().removeAll();
+  store.box<Category>().removeAll();
+  store.box<Account>().removeAll();
+  store.box<UserPreferences>().removeAll();
+  store.box<Budget>().removeAll();
+  store.box<Goal>().removeAll();
+  store.box<TransactionTag>().removeAll();
+  store.box<FileAttachment>().removeAll();
+  store.box<RecurringTransaction>().removeAll();
+  store.box<TransactionFilterPreset>().removeAll();
 }
